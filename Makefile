@@ -7,7 +7,6 @@ TARGET = libstm32f407discovery.a
 SRCS = \
 	$(shell find ./source -name "*.d") \
 	$(shell find ./cortexm/source -name "*.d")
-OBJS = constants.o gpio.o rcc.o package.o cortexm.o assembly.o
 OBJDIR = out
 EXDIR = examples
 
