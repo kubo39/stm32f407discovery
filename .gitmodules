@@ -1,0 +1,3 @@
+[submodule "cortexm"]
+	path = cortexm
+	url = https://github.com/kubo39/cortexm
