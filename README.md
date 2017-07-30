@@ -4,10 +4,21 @@ STM32F407DISCOVERY dev board library for LDC.
 
 ## Tools
 
-- Ubuntu 17.04
+### Ubuntu 17.04
+
+- Required packages
 
 ```console
-$ apt install -y openocd gdb-arm-none-eabi gcc-arm-none-eabi ldc
+$ sudo apt install -y openocd gdb-arm-none-eabi gcc-arm-none-eabi
+```
+
+- LLVM D Compiler
+
+I tried LDC-1.3.0.
+
+```console
+$ curl -fsS https://dlang.org/install.sh | bash -s ldc-1.3.0
+$ source $HOME/dlang/ldc-1.3.0/activate
 ```
 
 ## Prerequirements
@@ -40,6 +51,11 @@ If not, add yourself to `uucp` group.
 $ sudo usermod -a -G uucp $(id -nu)
 ```
 
+And `git submodule init`.
+
+```console
+$ git submodule init
+```
 
 ## Example
 
