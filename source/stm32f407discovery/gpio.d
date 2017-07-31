@@ -50,10 +50,26 @@ void powerOnGpiod()
     *ahb1enr |= RCC_AHB1ENR_GPIODEN;
 }
 
-void ledOn()
+void putPd15InOutputMode()
 {
     auto moder = &GPIOD.moder;
-    *moder = 0x40000000;
-    auto odr = &GPIOD.odr;
-    *odr = 1 << 15;
+    *moder |= (*moder & ~(0b11 << 30)) | (0b01 << 30);
+}
+
+void putPd14InOutputMode()
+{
+    auto moder = &GPIOD.moder;
+    *moder |= (*moder & ~(0b11 << 28)) | (0b01 << 28);
+}
+
+void putPd13InOutputMode()
+{
+    auto moder = &GPIOD.moder;
+    *moder |= (*moder & ~(0b11 << 26)) | (0b01 << 26);
+}
+
+void putPd12InOutputMode()
+{
+    auto moder = &GPIOD.moder;
+    *moder |= (*moder & ~(0b11 << 24)) | (0b01 << 24);
 }
