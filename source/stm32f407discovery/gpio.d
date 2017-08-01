@@ -29,7 +29,7 @@ __gshared GPIO* GPIOK = cast(GPIO*) 0x40022800;  // Start address of the GPIOK r
 
 struct GPIO
 {
-    uint moder;  /* offser address of the CRH register */
+    uint moder;
     uint otyper;
     uint ospeedr;
     uint pupdr;
@@ -44,9 +44,7 @@ struct GPIO
 
 void powerOnGpiod()
 {
-    auto rcc = cast(Rcc*) RCC;
-    // Pointer to the AHB1ENR register
-    auto ahb1enr = &rcc.ahb1enr;
+    auto ahb1enr = &RCC.ahb1enr;
     *ahb1enr |= RCC_AHB1ENR_GPIODEN;
 }
 
