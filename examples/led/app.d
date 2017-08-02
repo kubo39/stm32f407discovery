@@ -1,6 +1,7 @@
 import stm32f407discovery;
 
 import stm32f407discovery.led;
+import stm32f407discovery.timer;
 
 extern(C):
 @nogc:
@@ -10,9 +11,13 @@ void main()
 {
     pragma(LDC_never_inline);
 
+    initTim2();
     initLED();
 
-    auto ticks = 100000;
+    pauseTim2();
+    setPrescalerTim2(7999);
+
+    auto ticks = 1000;
 
     while (true) {
         foreach (led; LEDS) {
@@ -24,12 +29,13 @@ void main()
     }
 }
 
-void delay(uint n)
+void delay(uint ticks)
 {
     pragma(LDC_never_inline);
 
-    foreach (_; 0 .. n)
-    {
-        nop();
-    }
+    setAutoreloadTim2(ticks);
+    resumeTim2();
+
+    while (!isUpdatedTim2) {}
+    clearUpdateFlagTim2();
 }
