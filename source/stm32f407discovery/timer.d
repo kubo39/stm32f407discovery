@@ -78,45 +78,45 @@ void initTim2()
     *apb1enr |= 1;
 }
 
-// Resume TIM2 count.
-void resumeTim2()
+// Resume the timer count.
+void resume(Tim* tim)
 {
-    auto cr1 = &TIM2.cr1;
+    auto cr1 = &tim.cr1;
     *cr1 |= 1;
 }
 
-// Pause TIM2 count.
-void pauseTim2()
+// Pause the timer count.
+void pause(Tim* tim)
 {
-    auto cr1 = &TIM2.cr1;
+    auto cr1 = &tim.cr1;
     *cr1 &= ~1;
 }
 
-// Configure the prescaler to have TIM2 operate.
-void setPrescalerTim2(ushort prescaler)
+// Configure the prescaler to have the timer operate.
+void setPrescaler(Tim* tim, ushort prescaler)
 {
-    auto psc = &TIM2.psc;
+    auto psc = &tim.psc;
     *psc = prescaler;
 }
 
-// set TIM2 to go off `autoreload` ticks.
-void setAutoreloadTim2(uint autoreload)
+// set the timer to go off `autoreload` ticks.
+void setAutoreload(Tim* tim, uint autoreload)
 {
-    auto arr = &TIM2.arr;
+    auto arr = &tim.arr;
     *arr = autoreload;
 }
 
 // Check if update event has occurred.
-bool isUpdatedTim2()
+bool isUpdated(Tim* tim)
 {
     uint uifBit = 1;
-    auto sr = &TIM2.sr;
+    auto sr = &tim.sr;
     return (*sr & uifBit) == 1 ? true : false;
 }
 
 // Clear update flag.
-void clearUpdateFlagTim2()
+void clearUpdateFlag(Tim* tim)
 {
-    auto sr = &TIM2.sr;
+    auto sr = &tim.sr;
     *sr &= ~1;
 }

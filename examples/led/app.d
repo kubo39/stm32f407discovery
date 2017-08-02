@@ -14,8 +14,8 @@ void main()
     initTim2();
     initLED();
 
-    pauseTim2();
-    setPrescalerTim2(7999);
+    pause(TIM2);
+    setPrescaler(TIM2, 7999);
 
     auto ticks = 1000;
 
@@ -33,9 +33,9 @@ void delay(uint ticks)
 {
     pragma(LDC_never_inline);
 
-    setAutoreloadTim2(ticks);
-    resumeTim2();
+    setAutoreload(TIM2, ticks);
+    resume(TIM2);
 
-    while (!isUpdatedTim2) {}
-    clearUpdateFlagTim2();
+    while (!isUpdated(TIM2)) {}
+    clearUpdateFlag(TIM2);
 }
