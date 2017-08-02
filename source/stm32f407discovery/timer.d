@@ -71,22 +71,22 @@ struct Tim
     ushort __reserved14;
 }
 
-// Initialize TIM2.
-void initTim2()
+// Power on TIM2.
+void powerOnTim2()
 {
     auto apb1enr = &RCC.apb1enr;
     *apb1enr |= 1;
 }
 
-// Initialize TIM3.
-void initTim3()
+// Power on TIM3.
+void powerOnTim3()
 {
     auto apb1enr = &RCC.apb1enr;
     *apb1enr |= 1 << 1;
 }
 
-// Initialize TIM4.
-void initTim4()
+// Power on TIM4.
+void powerOnTim4()
 {
     auto apb1enr = &RCC.apb1enr;
     *apb1enr |= 1 << 2;
