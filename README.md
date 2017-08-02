@@ -51,10 +51,10 @@ If not, add yourself to `uucp` group.
 $ sudo usermod -a -G uucp $(id -nu)
 ```
 
-And `git submodule init`.
+And `git submodule init && git submodule update`.
 
 ```console
-$ git submodule init
+$ git submodule init && git submodule update
 ```
 
 ## Example
