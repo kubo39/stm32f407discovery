@@ -78,6 +78,20 @@ void initTim2()
     *apb1enr |= 1;
 }
 
+// Initialize TIM3.
+void initTim3()
+{
+    auto apb1enr = &RCC.apb1enr;
+    *apb1enr |= 1 << 1;
+}
+
+// Initialize TIM4.
+void initTim4()
+{
+    auto apb1enr = &RCC.apb1enr;
+    *apb1enr |= 1 << 2;
+}
+
 // Resume the timer count.
 void resume(Tim* tim)
 {
