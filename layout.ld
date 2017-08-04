@@ -29,3 +29,12 @@ SECTIONS
     *(.note.gnu.build-id*)
   }
 }
+
+PROVIDE(NMIExceptionHandler = defaultExceptionHandler);
+PROVIDE(HardFaultExceptionHandler = defaultExceptionHandler);
+PROVIDE(MemmanageFaultExceptionHandler = defaultExceptionHandler);
+PROVIDE(BusFaultExceptionHandler = defaultExceptionHandler);
+PROVIDE(UsageFaultExceptionHandler = defaultExceptionHandler);
+PROVIDE(SVCallExceptionHandler = defaultExceptionHandler);
+PROVIDE(PendSVExceptionHandler = defaultExceptionHandler);
+PROVIDE(SystickExceptionHandler = defaultExceptionHandler);
