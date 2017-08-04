@@ -7,21 +7,25 @@ MEMORY
   RAM : ORIGIN = 0x20000000, LENGTH = 128K
 }
 
+PROVIDE(_stack_start = ORIGIN(RAM) + LENGTH(RAM));
+
 SECTIONS
 {
-  .text :
+  .text ORIGIN(FLASH) : ALIGN(4)
   {
     /* Vector table */
-    LONG(ORIGIN(RAM) + LENGTH(RAM))
-    LONG(_reset + 1);
-    KEEP(*(.rodata._EXCEPTIONS));
-    /* Reset handler */
+    LONG(_stack_start);
     _reset = .;
     KEEP(*(.text._reset));
+    LONG(reset_handler + 1);
+    KEEP(*(.rodata.exceptions));
+    /* Reset handler */
+    reset_handler = .;
+    KEEP(*(.text.reset_handler));
 
     /* the code */
     *(.text*)
-  }>FLASH
+  } > FLASH
 
   /DISCARD/ :
   {
