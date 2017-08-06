@@ -132,7 +132,7 @@ bool isUpdated(Tim* tim)
 {
     uint uifBit = 1;
     auto sr = &tim.sr;
-    return (*sr & uifBit) == 1 ? true : false;
+    return (*sr & uifBit) == 1;
 }
 
 // Clear update flag.
