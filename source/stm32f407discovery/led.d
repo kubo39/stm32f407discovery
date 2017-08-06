@@ -44,8 +44,8 @@ __gshared LED[4] LEDS = [
 void initLED()
 {
     powerOnGpiod();
-    putPd15InOutputMode();
-    putPd14InOutputMode();
-    putPd13InOutputMode();
-    putPd12InOutputMode();
+    GPIOD.setMode(15, Mode.Out);
+    GPIOD.setMode(14, Mode.Out);
+    GPIOD.setMode(13, Mode.Out);
+    GPIOD.setMode(12, Mode.Out);
 }

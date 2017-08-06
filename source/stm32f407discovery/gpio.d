@@ -27,6 +27,14 @@ __gshared GPIO* GPIOJ = cast(GPIO*) 0x40022400;  // Start address of the GPIOJ r
 __gshared GPIO* GPIOK = cast(GPIO*) 0x40022800;  // Start address of the GPIOK register
 
 
+enum Mode
+{
+    In = 0b00,
+    Out = 0b01,
+    AltFunc = 0b10,
+    Analog = 0b11,
+}
+
 struct GPIO
 {
     uint moder;
@@ -48,26 +56,8 @@ void powerOnGpiod()
     *ahb1enr |= RCC_AHB1ENR_GPIODEN;
 }
 
-void putPd15InOutputMode()
+void setMode(GPIO* gpio, ubyte pin, Mode mode)
 {
-    auto moder = &GPIOD.moder;
-    *moder |= (*moder & ~(0b11 << 30)) | (0b01 << 30);
-}
-
-void putPd14InOutputMode()
-{
-    auto moder = &GPIOD.moder;
-    *moder |= (*moder & ~(0b11 << 28)) | (0b01 << 28);
-}
-
-void putPd13InOutputMode()
-{
-    auto moder = &GPIOD.moder;
-    *moder |= (*moder & ~(0b11 << 26)) | (0b01 << 26);
-}
-
-void putPd12InOutputMode()
-{
-    auto moder = &GPIOD.moder;
-    *moder |= (*moder & ~(0b11 << 24)) | (0b01 << 24);
+    auto moder = &gpio.moder;
+    *moder |= (*moder & ~(0b11 << pin * 2)) | (mode << pin * 2);
 }
