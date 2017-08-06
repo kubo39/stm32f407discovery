@@ -47,6 +47,11 @@ struct LED
         auto odr = &GPIOD.odr;
         *odr |= 1 << this.color;
     }
+
+    void setMode(Mode mode) nothrow @nogc
+    {
+        GPIOD.setMode(this.color, mode);
+    }
 }
 
 
