@@ -25,16 +25,12 @@ enum Color : ubyte
 
 struct LED
 {
-    private:
-
     Color color;
 
     this(Color color) nothrow @nogc
     {
         this.color = color;
     }
-
-    public:
 
     void off() nothrow @nogc
     {
