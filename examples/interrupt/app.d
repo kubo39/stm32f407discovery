@@ -1,6 +1,5 @@
 import stm32f407discovery;
 
-import stm32f407discovery.interrupt;
 import stm32f407discovery.led;
 import stm32f407discovery.timer;
 
