@@ -14,38 +14,55 @@ pragma(LDC_no_typeinfo);
  *  LED
  */
 
+enum Color : ubyte
+{
+    GREEN = 12,
+    ORANGE = 13,
+    RED = 14,
+    BLUE = 15,
+}
+
 
 struct LED
 {
-    ubyte i;
+    private:
+
+    Color color;
+
+    this(Color color) nothrow @nogc
+    {
+        this.color = color;
+    }
+
+    public:
 
     void off() nothrow @nogc
     {
         auto odr = &GPIOD.odr;
-        *odr &= ~(0 | (1 << i));
+        *odr &= ~(0 | (1 << this.color));
     }
 
     void on() nothrow @nogc
     {
         auto odr = &GPIOD.odr;
-        *odr |= 1 << i;
+        *odr |= 1 << this.color;
     }
 }
 
 
 __gshared LED[4] LEDS = [
-    LED(12),
-    LED(13),
-    LED(14),
-    LED(15),
+    LED(Color.GREEN),
+    LED(Color.ORANGE),
+    LED(Color.RED),
+    LED(Color.BLUE),
     ];
 
 
 void initLED()
 {
     powerOnGpiod();
-    GPIOD.setMode(15, Mode.Out);
-    GPIOD.setMode(14, Mode.Out);
-    GPIOD.setMode(13, Mode.Out);
-    GPIOD.setMode(12, Mode.Out);
+    GPIOD.setMode(Color.GREEN, Mode.Out);
+    GPIOD.setMode(Color.ORANGE, Mode.Out);
+    GPIOD.setMode(Color.RED, Mode.Out);
+    GPIOD.setMode(Color.BLUE, Mode.Out);
 }
