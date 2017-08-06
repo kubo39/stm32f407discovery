@@ -23,8 +23,7 @@ void main()
     // Enable TIM2 update IRQ.
     auto iser = &Nvic.iser[0];
     *iser = 1 << 28;
-    auto dier = &TIM2.dier;
-    *dier = 1;
+    TIM2.enableUpdateEventInterrupt();
 
     while (true) {}
 }
@@ -36,5 +35,4 @@ void TIM2_IRQInterruptHandler()
         LEDS[2].on();
     }
     TIM2.clearUpdateFlag();
-    while (true) {}
 }

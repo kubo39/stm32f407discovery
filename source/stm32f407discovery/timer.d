@@ -141,3 +141,10 @@ void clearUpdateFlag(Tim* tim)
     auto sr = &tim.sr;
     *sr &= ~1;
 }
+
+// Enable update event interrupt.
+void enableUpdateEventInterrupt(Tim* tim)
+{
+    auto dier = &tim.dier;
+    *dier |= 1;
+}
