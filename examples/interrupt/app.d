@@ -21,8 +21,7 @@ void main()
     TIM2.resume();
 
     // Enable TIM2 update IRQ.
-    auto iser = &Nvic.iser[0];
-    *iser = 1 << 28;
+    NVIC.enable(28);
     TIM2.enableUpdateEventInterrupt();
 
     while (true) {}

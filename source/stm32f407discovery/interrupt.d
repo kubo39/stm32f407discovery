@@ -12,9 +12,9 @@ pragma(LDC_no_typeinfo);
  *  NVIC
  */
 
-__gshared NVIC* Nvic = cast(NVIC*) 0xE000E100;
+__gshared Nvic* NVIC = cast(Nvic*) 0xE000E100;
 
-struct NVIC
+struct Nvic
 {
     uint[8] iser;
     uint[24] __reserved0;
@@ -29,4 +29,11 @@ struct NVIC
     uint[240] ip;
     uint[644] __reserved5;
     uint stir;
+}
+
+// Enable interrupt.
+void enable(Nvic* _, uint nr)
+{
+    auto iser = &NVIC.iser[nr / 32];
+    *iser = 1 << nr;
 }
