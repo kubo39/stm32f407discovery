@@ -92,6 +92,13 @@ void powerOnTim4()
     *apb1enr |= 1 << 2;
 }
 
+// Power on TIM5.
+void powerOnTim5()
+{
+    auto apb1enr = &RCC.apb1enr;
+    *apb1enr |= 1 << 3;
+}
+
 // Resume the timer count.
 void resume(Tim* tim)
 {
