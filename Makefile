@@ -23,6 +23,8 @@ $(TARGET): $(SRCS)
 
 clean:
 	$(RM) -r $(OBJDIR)/* $(TARGET)
+	$(MAKE) -C $(EXDIR)/crash clean
+	$(MAKE) -C $(EXDIR)/interrupt clean
 	$(MAKE) -C $(EXDIR)/led clean
 
 examples: $(TARGET)
