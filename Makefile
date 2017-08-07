@@ -26,8 +26,12 @@ clean:
 	$(MAKE) -C $(EXDIR)/led clean
 
 examples: $(TARGET)
+	$(MAKE) -C $(EXDIR)/crash
 	$(MAKE) -C $(EXDIR)/interrupt
 	$(MAKE) -C $(EXDIR)/led
+
+crash-run: $(TARGET)
+	$(MAKE) -C $(EXDIR)/crash run
 
 interrupt-run: $(TARGET)
 	$(MAKE) -C $(EXDIR)/interrupt run
