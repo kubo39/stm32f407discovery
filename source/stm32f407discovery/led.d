@@ -35,13 +35,19 @@ struct LED
     void off() nothrow @nogc
     {
         auto odr = &GPIOD.odr;
-        *odr &= ~(0 | (1 << this.color));
+        *odr &= ~(1 << this.color);
     }
 
     void on() nothrow @nogc
     {
         auto odr = &GPIOD.odr;
         *odr |= 1 << this.color;
+    }
+
+    void toggle() nothrow @nogc
+    {
+        auto odr = &GPIOD.odr;
+        *odr ^= 1 << this.color;
     }
 
     void setMode(Mode mode) nothrow @nogc
