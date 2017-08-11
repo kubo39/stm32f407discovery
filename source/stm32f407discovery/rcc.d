@@ -19,6 +19,12 @@ immutable
     uint RCC_AHB1ENR_GPIOCEN = 1 << 2;
     uint RCC_AHB1ENR_GPIODEN = 1 << 3;
     uint RCC_AHB1ENR_GPIOEEN = 1 << 4;
+    uint RCC_AHB1ENR_GPIOFEN = 1 << 5;
+    uint RCC_AHB1ENR_GPIOGEN = 1 << 6;
+    uint RCC_AHB1ENR_GPIOHEN = 1 << 7;
+    uint RCC_AHB1ENR_GPIOIEN = 1 << 8;
+    uint RCC_AHB1ENR_GPIOJEN = 1 << 9;
+    uint RCC_AHB1ENR_GPIOKEN = 1 << 10;
 
     // APB1ENR
     uint RCC_APB1ENR_TIM2EN = 1;
