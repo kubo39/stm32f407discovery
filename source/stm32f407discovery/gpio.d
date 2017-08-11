@@ -50,10 +50,34 @@ struct GPIO
     uint afrh;
 }
 
+void powerOnGpioa()
+{
+    auto ahb1enr = &RCC.ahb1enr;
+    *ahb1enr |= RCC_AHB1ENR_GPIOAEN;
+}
+
+void powerOnGpiob()
+{
+    auto ahb1enr = &RCC.ahb1enr;
+    *ahb1enr |= RCC_AHB1ENR_GPIOBEN;
+}
+
+void powerOnGpioc()
+{
+    auto ahb1enr = &RCC.ahb1enr;
+    *ahb1enr |= RCC_AHB1ENR_GPIOCEN;
+}
+
 void powerOnGpiod()
 {
     auto ahb1enr = &RCC.ahb1enr;
     *ahb1enr |= RCC_AHB1ENR_GPIODEN;
+}
+
+void powerOnGpioe()
+{
+    auto ahb1enr = &RCC.ahb1enr;
+    *ahb1enr |= RCC_AHB1ENR_GPIOEEN;
 }
 
 void setMode(GPIO* gpio, ubyte pin, Mode mode)

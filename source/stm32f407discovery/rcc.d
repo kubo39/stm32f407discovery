@@ -11,7 +11,11 @@ nothrow:
 
 __gshared Rcc* RCC = cast(Rcc*) 0x40023800;  // Start address of the RCC register
 
-const uint RCC_AHB1ENR_GPIODEN = 0x00000008;  // GPIODEN bit mask
+immutable uint RCC_AHB1ENR_GPIOAEN = 1;  // GPIOAEN bit mask
+immutable uint RCC_AHB1ENR_GPIOBEN = 1 << 1;  // GPIOBEN bit mask
+immutable uint RCC_AHB1ENR_GPIOCEN = 1 << 2;  // GPIOCEN bit mask
+immutable uint RCC_AHB1ENR_GPIODEN = 1 << 3;  // GPIODEN bit mask
+immutable uint RCC_AHB1ENR_GPIOEEN = 1 << 4;  // GPIOEEN bit mask
 
 struct Rcc
 {
