@@ -75,28 +75,28 @@ struct Tim
 void powerOnTim2()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= 1;
+    *apb1enr |= RCC_APB1ENR_TIM2EN;
 }
 
 // Power on TIM3.
 void powerOnTim3()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= 1 << 1;
+    *apb1enr |= RCC_APB1ENR_TIM3EN;
 }
 
 // Power on TIM4.
 void powerOnTim4()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= 1 << 2;
+    *apb1enr |= RCC_APB1ENR_TIM4EN;
 }
 
 // Power on TIM5.
 void powerOnTim5()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= 1 << 3;
+    *apb1enr |= RCC_APB1ENR_TIM5EN;
 }
 
 // Resume the timer count.
