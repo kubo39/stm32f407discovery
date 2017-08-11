@@ -38,6 +38,10 @@ immutable
     uint RCC_APB1ENR_TIM14EN = 1 << 8;
     uint RCC_APB1ENR_USART2EN = 1 << 17;
     uint RCC_APB1ENR_USART3EN = 1 << 18;
+
+    // APB2ENR
+    uint RCC_APB2ENR_USART1EN = 1 << 4;
+    uint RCC_APB2ENR_USART6EN = 1 << 5;
 }
 
 struct Rcc
