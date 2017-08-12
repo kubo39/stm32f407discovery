@@ -53,3 +53,76 @@ void powerOnUsart6()
     auto apb2enr = &RCC.apb2enr;
     *apb2enr |= RCC_APB2ENR_USART6EN;
 }
+
+enum CR1
+{
+    SBK = 0,
+    RWU = 1,
+    RE = 2,
+    TE = 3,
+    IDLEIE = 4,
+    RXNEIE = 5,
+    TCIE = 6,
+    TXEIE = 7,
+    PEIE = 8,
+    PS = 9,
+    PCE = 10,
+    WAKE = 11,
+    M = 12,
+    UE = 13,
+    // reserved
+    OVER8 = 15,
+}
+
+void enable(Usart* usart, CR1 bit)
+{
+    auto cr1 = &usart.cr1;
+    *cr1 |= 1 << bit;
+}
+
+void disable(Usart* usart, CR1 bit)
+{
+    auto cr1 = &usart.cr1;
+    *cr1 &= ~(1 << bit);
+}
+
+void setStopBits(Usart* usart, ubyte stop)
+{
+    auto cr2 = &usart.cr2;
+    *cr2 |= stop << 12;
+}
+
+enum CR3
+{
+    EIE = 0,
+    IREN = 1,
+    IRLP = 2,
+    HDSEL = 3,
+    NACK = 4,
+    SCEN = 5,
+    DMAR = 6,
+    DMAT = 7,
+    RTSE = 8,
+    CTSE = 9,
+    CTSIE = 10,
+    ONEBIT = 11,
+}
+
+void enable(Usart* usart, CR3 bit)
+{
+    auto cr3 = &usart.cr3;
+    *cr3 |= 1 << bit;
+}
+
+void disable(Usart* usart, CR3 bit)
+{
+    auto cr3 = &usart.cr3;
+    *cr3 &= ~(1 << bit);
+}
+
+void setBaudRate(Usart* usart, ubyte fraction, ushort mantissa)
+{
+    auto brr = &usart.brr;
+    *brr |= fraction;
+    *brr |= mantissa << 4;
+}

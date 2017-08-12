@@ -83,3 +83,9 @@ void setMode(GPIO* gpio, ubyte pin, Mode mode)
     auto moder = &gpio.moder;
     *moder |= (*moder & ~(0b11 << pin * 2)) | (mode << pin * 2);
 }
+
+void setAltFunc(GPIO* gpio, ubyte pin)
+{
+    auto afrl = &gpio.afrl;
+    *afrl |= (0b111 << pin);
+}
