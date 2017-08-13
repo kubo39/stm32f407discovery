@@ -8,7 +8,7 @@ TARGET = crash.bin
 SRC = $(shell find ./ -name "*.d")
 OBJ = app.o
 
-LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -c -g -defaultlib= -Oz -release
+LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -c -g -defaultlib= -release
 LDFLAGS = -T $(TOP_DIR)/layout.ld --gc-section -nostartfiles
 
 LIBRARY = stm32f407discovery
