@@ -3,7 +3,7 @@ import stm32f407discovery;
 import stm32f407discovery.led;
 import stm32f407discovery.timer;
 
-extern(C):
+extern (C):
 @nogc:
 nothrow:
 
@@ -19,8 +19,10 @@ void main()
 
     auto ticks = 1000;
 
-    while (true) {
-        foreach (led; LEDS) {
+    while (true)
+    {
+        foreach (led; LEDS)
+        {
             led.on();
             delay(ticks);
             led.off();
@@ -36,6 +38,8 @@ void delay(uint ticks)
     TIM2.setAutoreload(ticks);
     TIM2.resume();
 
-    while (!TIM2.isUpdated()) {}
+    while (!TIM2.isUpdated())
+    {
+    }
     TIM2.clearUpdateFlag();
 }

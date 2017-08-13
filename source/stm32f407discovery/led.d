@@ -2,8 +2,7 @@ module stm32f407discovery.led;
 
 import stm32f407discovery.gpio;
 
-version(ARM_Thumb):
-extern(C):
+version (ARM_Thumb)  : extern (C):
 @nogc:
 nothrow:
 
@@ -21,7 +20,6 @@ enum Color : ubyte
     RED = 14,
     BLUE = 15,
 }
-
 
 struct LED
 {
@@ -56,14 +54,7 @@ struct LED
     }
 }
 
-
-__gshared LED[4] LEDS = [
-    LED(Color.GREEN),
-    LED(Color.ORANGE),
-    LED(Color.RED),
-    LED(Color.BLUE),
-    ];
-
+__gshared LED[4] LEDS = [LED(Color.GREEN), LED(Color.ORANGE), LED(Color.RED), LED(Color.BLUE),];
 
 void initLED()
 {

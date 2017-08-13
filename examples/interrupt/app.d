@@ -3,7 +3,7 @@ import stm32f407discovery;
 import stm32f407discovery.led;
 import stm32f407discovery.timer;
 
-extern(C):
+extern (C):
 @nogc:
 nothrow:
 
@@ -23,12 +23,15 @@ void main()
     NVIC.enable(28);
     TIM2.enableUpdateEventInterrupt();
 
-    while (true) {}
+    while (true)
+    {
+    }
 }
 
 void TIM2_IRQInterruptHandler()
 {
-    if (TIM2.isUpdated()) {
+    if (TIM2.isUpdated())
+    {
         // RED
         LEDS[2].on();
     }

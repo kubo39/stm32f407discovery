@@ -2,34 +2,31 @@ module stm32f407discovery.timer;
 
 import stm32f407discovery.rcc;
 
-version(ARM_Thumb):
-extern(C):
+version (ARM_Thumb)  : extern (C):
 @nogc:
 nothrow:
 
 pragma(LDC_no_moduleinfo);
 pragma(LDC_no_typeinfo);
 
-
 /**
  *  Timer
  */
 
-__gshared Tim* TIM2  = cast(Tim*) 0x40000000;  // Start address of the TIM2 register
-__gshared Tim* TIM3  = cast(Tim*) 0x40000400;  // Start address of the TIM3 register
-__gshared Tim* TIM4  = cast(Tim*) 0x40000800;  // Start address of the TIM4 register
-__gshared Tim* TIM5  = cast(Tim*) 0x40000C00;  // Start address of the TIM5 register
-__gshared Tim* TIM6  = cast(Tim*) 0x40001000;  // Start address of the TIM6 register
-__gshared Tim* TIM7  = cast(Tim*) 0x40001400;  // Start address of the TIM7 register
-__gshared Tim* TIM12 = cast(Tim*) 0x40001800;  // Start address of the TIM12 register
-__gshared Tim* TIM13 = cast(Tim*) 0x40001C00;  // Start address of the TIM13 register
-__gshared Tim* TIM14 = cast(Tim*) 0x40002000;  // Start address of the TIM14 register
-__gshared Tim* TIM1  = cast(Tim*) 0x40010000;  // Start address of the TIM1 register
-__gshared Tim* TIM8  = cast(Tim*) 0x40010400;  // Start address of the TIM8 register
-__gshared Tim* TIM9  = cast(Tim*) 0x40014000;  // Start address of the TIM9 register
-__gshared Tim* TIM10 = cast(Tim*) 0x40014400;  // Start address of the TIM10 register
-__gshared Tim* TIM11 = cast(Tim*) 0x40014800;  // Start address of the TIM11 register
-
+__gshared Tim* TIM2 = cast(Tim*) 0x40000000; // Start address of the TIM2 register
+__gshared Tim* TIM3 = cast(Tim*) 0x40000400; // Start address of the TIM3 register
+__gshared Tim* TIM4 = cast(Tim*) 0x40000800; // Start address of the TIM4 register
+__gshared Tim* TIM5 = cast(Tim*) 0x40000C00; // Start address of the TIM5 register
+__gshared Tim* TIM6 = cast(Tim*) 0x40001000; // Start address of the TIM6 register
+__gshared Tim* TIM7 = cast(Tim*) 0x40001400; // Start address of the TIM7 register
+__gshared Tim* TIM12 = cast(Tim*) 0x40001800; // Start address of the TIM12 register
+__gshared Tim* TIM13 = cast(Tim*) 0x40001C00; // Start address of the TIM13 register
+__gshared Tim* TIM14 = cast(Tim*) 0x40002000; // Start address of the TIM14 register
+__gshared Tim* TIM1 = cast(Tim*) 0x40010000; // Start address of the TIM1 register
+__gshared Tim* TIM8 = cast(Tim*) 0x40010400; // Start address of the TIM8 register
+__gshared Tim* TIM9 = cast(Tim*) 0x40014000; // Start address of the TIM9 register
+__gshared Tim* TIM10 = cast(Tim*) 0x40014400; // Start address of the TIM10 register
+__gshared Tim* TIM11 = cast(Tim*) 0x40014800; // Start address of the TIM11 register
 
 struct Tim
 {
@@ -55,7 +52,7 @@ struct Tim
     ushort psc;
     ushort __reserved9;
     uint arr;
-    ushort  rcr;
+    ushort rcr;
     ushort __reserved10;
     uint ccr1;
     uint ccr2;

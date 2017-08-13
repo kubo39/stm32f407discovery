@@ -1,7 +1,6 @@
 module stm32f407discovery.rcc;
 
-version(ARM_Thumb):
-extern(C):
+version (ARM_Thumb)  : extern (C):
 @nogc:
 nothrow:
 
@@ -9,7 +8,7 @@ nothrow:
  *  Rcc
  */
 
-__gshared Rcc* RCC = cast(Rcc*) 0x40023800;  // Start address of the RCC register
+__gshared Rcc* RCC = cast(Rcc*) 0x40023800; // Start address of the RCC register
 
 immutable
 {
