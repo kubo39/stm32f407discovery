@@ -25,7 +25,14 @@ SECTIONS
     KEEP(*(.text.reset_handler));
 
     /* the code */
-    *(.text*)
+    *(.text*);
+  } > FLASH
+
+  /* __gshared immutable */
+  .rodata : ALIGN(4)
+  {
+    *(.rodata);
+    *(.rodata*);
   } > FLASH
 
   /DISCARD/ :
