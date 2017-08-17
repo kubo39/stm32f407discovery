@@ -33,6 +33,15 @@ SECTIONS
   {
     *(.rodata);
     *(.rodata*);
+    . = ALIGN(4);
+  } > FLASH
+
+  /* __gshared */
+  .data : ALIGN(4)
+  {
+    *(.data);
+    *(.data.*);
+    . = ALIGN(4);
   } > FLASH
 
   /DISCARD/ :
