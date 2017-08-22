@@ -10,7 +10,7 @@ SRCS = \
 OBJDIR = out
 EXDIR = examples
 
-LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -defaultlib= -Oz -release -g -lib -od=$(OBJDIR) -of$(TARGET)
+LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -defaultlib= -O0 -release -g -lib -od=$(OBJDIR) -of$(TARGET)
 
 LINKFLAGS = \
 	-I./source \
@@ -25,11 +25,13 @@ clean:
 	$(RM) -r $(OBJDIR)/* $(TARGET)
 	$(MAKE) -C $(EXDIR)/crash clean
 	$(MAKE) -C $(EXDIR)/interrupt clean
+	$(MAKE) -C $(EXDIR)/itm clean
 	$(MAKE) -C $(EXDIR)/led clean
 
 examples: $(TARGET)
 	$(MAKE) -C $(EXDIR)/crash
 	$(MAKE) -C $(EXDIR)/interrupt
+	$(MAKE) -C $(EXDIR)/itm
 	$(MAKE) -C $(EXDIR)/led
 
 crash-run: $(TARGET)
@@ -37,6 +39,9 @@ crash-run: $(TARGET)
 
 interrupt-run: $(TARGET)
 	$(MAKE) -C $(EXDIR)/interrupt run
+
+itm-run: $(TARGET)
+	$(MAKE) -C $(EXDIR)/itm run
 
 led-run: $(TARGET)
 	$(MAKE) -C $(EXDIR)/led run
