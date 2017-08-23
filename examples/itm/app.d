@@ -1,5 +1,4 @@
-import cortexm;
-import semihosting;
+import stm32f407discovery;
 
 extern (C):
 @nogc:
