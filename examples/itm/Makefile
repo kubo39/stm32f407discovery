@@ -14,7 +14,8 @@ LDFLAGS = -T $(TOP_DIR)/layout.ld --gc-section -nostartfiles
 LIBRARY = stm32f407discovery
 LINKFLAGS = \
 	-I$(TOP_DIR)/source \
-	-I${TOP_DIR}/cortexm/source
+	-I${TOP_DIR}/cortexm/source \
+	-I${TOP_DIR}/semihosting/source
 
 .SUFFIXES: .d .o
 

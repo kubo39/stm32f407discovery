@@ -1,3 +1,6 @@
 [submodule "cortexm"]
 	path = cortexm
 	url = git://github.com/kubo39/cortexm
+[submodule "semihosting"]
+	path = semihosting
+	url = git://github.com/kubo39/semihosting

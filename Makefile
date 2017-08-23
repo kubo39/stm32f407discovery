@@ -6,7 +6,8 @@ TARGET = libstm32f407discovery.a
 
 SRCS = \
 	$(shell find ./source -name "*.d") \
-	$(shell find ./cortexm/source -name "*.d")
+	$(shell find ./cortexm/source -name "*.d") \
+	$(shell find ./semihosting/source -name "*.d")
 OBJDIR = out
 EXDIR = examples
 
