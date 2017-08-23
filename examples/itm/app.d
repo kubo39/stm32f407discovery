@@ -19,7 +19,7 @@ enum MODE : uint
 
 uint syscall(uint nr, const uint* arg)
 {
-    return __asm!int("bkpt 0xAB", "={r0}, {r0}, {r1}", nr, arg);
+    return __asm!uint("bkpt 0xAB", "={r0}, {r0}, {r1}", nr, arg);
 }
 
 int open(in string name, uint mode)
