@@ -21,10 +21,10 @@ pragma(LDC_intrinsic, "ldc.bitop.vld")
     ulong volatileLoad(ulong * ptr);
 
 pragma(LDC_intrinsic, "ldc.bitop.vst")
-void volatileStore(ubyte * ptr, ubyte  value);
+    void volatileStore(ubyte * ptr, ubyte value);
 pragma(LDC_intrinsic, "ldc.bitop.vst")
-void volatileStore(ushort* ptr, ushort value);
+    void volatileStore(ushort* ptr, ushort value);
 pragma(LDC_intrinsic, "ldc.bitop.vst")
-    void volatileStore(uint  * ptr, uint   value);
+    void volatileStore(uint  * ptr, uint value);
 pragma(LDC_intrinsic, "ldc.bitop.vst")
-void volatileStore(ulong * ptr, ulong value);
+    void volatileStore(ulong * ptr, ulong value);
