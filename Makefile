@@ -11,7 +11,7 @@ SRCS = \
 OBJDIR = out
 EXDIR = examples
 
-LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -defaultlib= -O0 -release -g -lib -od=$(OBJDIR) -of$(TARGET)
+LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -defaultlib= -Oz -release -g -lib -od=$(OBJDIR) -of$(TARGET)
 
 LINKFLAGS = \
 	-I./source \
