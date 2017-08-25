@@ -1,13 +1,18 @@
 module stm32f407discovery.gpio;
 
+import stm32f407discovery.bitop;
 import stm32f407discovery.rcc;
 
-version (ARM_Thumb)  : extern (C):
+version (ARM_Thumb)  :
+extern (C):
 @nogc:
 nothrow:
 
-pragma(LDC_no_moduleinfo);
-pragma(LDC_no_typeinfo);
+version (LDC)
+{
+    pragma(LDC_no_moduleinfo);
+    pragma(LDC_no_typeinfo);
+}
 
 /**
  *  GPIO
@@ -51,31 +56,31 @@ struct GPIO
 void powerOnGpioa()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    *ahb1enr |= RCC_AHB1ENR_GPIOAEN;
+    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIOAEN);
 }
 
 void powerOnGpiob()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    *ahb1enr |= RCC_AHB1ENR_GPIOBEN;
+    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIOBEN);
 }
 
 void powerOnGpioc()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    *ahb1enr |= RCC_AHB1ENR_GPIOCEN;
+    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIOCEN);
 }
 
 void powerOnGpiod()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    *ahb1enr |= RCC_AHB1ENR_GPIODEN;
+    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIODEN);
 }
 
 void powerOnGpioe()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    *ahb1enr |= RCC_AHB1ENR_GPIOEEN;
+    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIOEEN);
 }
 
 void setMode(GPIO* gpio, ubyte pin, Mode mode)
@@ -87,5 +92,5 @@ void setMode(GPIO* gpio, ubyte pin, Mode mode)
 void setAltFunc(GPIO* gpio, ubyte pin)
 {
     auto afrl = &gpio.afrl;
-    *afrl |= (0b111 << pin);
+    volatileStore(afrl, *afrl | (0b111 << pin));
 }

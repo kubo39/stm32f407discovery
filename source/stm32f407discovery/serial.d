@@ -3,12 +3,16 @@ module stm32f407discovery.serial;
 import stm32f407discovery.gpio;
 import stm32f407discovery.usart;
 
-version (ARM_Thumb)  : extern (C):
+version (ARM_Thumb)  :
+extern (C):
 @nogc:
 nothrow:
 
-pragma(LDC_no_moduleinfo);
-pragma(LDC_no_typeinfo);
+version (LDC)
+{
+    pragma(LDC_no_moduleinfo);
+    pragma(LDC_no_typeinfo);
+}
 
 /**
  *  Serial

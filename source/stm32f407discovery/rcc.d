@@ -5,6 +5,12 @@ extern (C):
 @nogc:
 nothrow:
 
+version(LDC)
+{
+    pragma(LDC_no_moduleinfo);
+    pragma(LDC_no_typeinfo);
+}
+
 /**
  *  Rcc
  */

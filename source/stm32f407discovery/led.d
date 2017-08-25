@@ -7,8 +7,11 @@ extern (C):
 @nogc:
 nothrow:
 
-pragma(LDC_no_moduleinfo);
-pragma(LDC_no_typeinfo);
+version (LDC)
+{
+    pragma(LDC_no_moduleinfo);
+    pragma(LDC_no_typeinfo);
+}
 
 /**
  *  LED
