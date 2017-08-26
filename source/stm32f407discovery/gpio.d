@@ -1,6 +1,6 @@
 module stm32f407discovery.gpio;
 
-import stm32f407discovery.bitop;
+import cortexm;
 import stm32f407discovery.rcc;
 
 version (ARM_Thumb)  :
