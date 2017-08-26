@@ -1,5 +1,6 @@
 module stm32f407discovery.usart;
 
+import cortexm;
 import stm32f407discovery.rcc;
 
 version (ARM_Thumb) :
@@ -36,25 +37,25 @@ struct Usart
 void powerOnUsart2()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= RCC_APB1ENR_USART2EN;
+    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_USART2EN);
 }
 
 void powerOnUsart3()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= RCC_APB1ENR_USART3EN;
+    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_USART3EN);
 }
 
 void powerOnUsart1()
 {
     auto apb2enr = &RCC.apb2enr;
-    *apb2enr |= RCC_APB2ENR_USART1EN;
+    volatileStore(apb2enr, *apb2enr | RCC_APB2ENR_USART1EN);
 }
 
 void powerOnUsart6()
 {
     auto apb2enr = &RCC.apb2enr;
-    *apb2enr |= RCC_APB2ENR_USART6EN;
+    volatileStore(apb2enr, *apb2enr | RCC_APB2ENR_USART6EN);
 }
 
 enum CR1
@@ -80,19 +81,19 @@ enum CR1
 void enable(Usart* usart, CR1 bit)
 {
     auto cr1 = &usart.cr1;
-    *cr1 |= 1 << bit;
+    volatileStore(cr1, *cr1 | 1 << bit);
 }
 
 void disable(Usart* usart, CR1 bit)
 {
     auto cr1 = &usart.cr1;
-    *cr1 &= ~(1 << bit);
+    volatileStore(cr1, *cr1 & ~(1 << bit));
 }
 
 void setStopBits(Usart* usart, ubyte stop)
 {
     auto cr2 = &usart.cr2;
-    *cr2 |= stop << 12;
+    volatileStore(cr2, *cr2 | stop << 12);
 }
 
 enum CR3
@@ -114,18 +115,18 @@ enum CR3
 void enable(Usart* usart, CR3 bit)
 {
     auto cr3 = &usart.cr3;
-    *cr3 |= 1 << bit;
+    volatileStore(cr3, *cr3 | 1 << bit);
 }
 
 void disable(Usart* usart, CR3 bit)
 {
     auto cr3 = &usart.cr3;
-    *cr3 &= ~(1 << bit);
+    volatileStore(cr3, *cr3 & ~(1 << bit));
 }
 
 void setBaudRate(Usart* usart, ubyte fraction, ushort mantissa)
 {
     auto brr = &usart.brr;
-    *brr |= fraction;
-    *brr |= mantissa << 4;
+    volatileStore(brr, *brr | fraction);
+    volatileStore(brr, *brr | (mantissa << 4));
 }

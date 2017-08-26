@@ -1,5 +1,6 @@
 module stm32f407discovery.timer;
 
+import cortexm;
 import stm32f407discovery.rcc;
 
 version (ARM_Thumb) :
@@ -83,69 +84,69 @@ void powerOnTim2()
 void powerOnTim3()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= RCC_APB1ENR_TIM3EN;
+    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_TIM3EN);
 }
 
 // Power on TIM4.
 void powerOnTim4()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= RCC_APB1ENR_TIM4EN;
+    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_TIM4EN);
 }
 
 // Power on TIM5.
 void powerOnTim5()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= RCC_APB1ENR_TIM5EN;
+    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_TIM5EN);
 }
 
 // Resume the timer count.
 void resume(Tim* tim)
 {
     auto cr1 = &tim.cr1;
-    *cr1 |= 1;
+    volatileStore(cr1, *cr1 | 1);
 }
 
 // Pause the timer count.
 void pause(Tim* tim)
 {
     auto cr1 = &tim.cr1;
-    *cr1 &= ~1;
+    volatileStore(cr1, *cr1 & ~1);
 }
 
 // Configure the prescaler to have the timer operate.
 void setPrescaler(Tim* tim, ushort prescaler)
 {
     auto psc = &tim.psc;
-    *psc = prescaler;
+    volatileStore(psc, prescaler);
 }
 
 // set the timer to go off `autoreload` ticks.
 void setAutoreload(Tim* tim, uint autoreload)
 {
     auto arr = &tim.arr;
-    *arr = autoreload;
+    volatileStore(arr, autoreload);
 }
 
 // Check if update event has occurred.
 bool isUpdated(Tim* tim)
 {
     uint uifBit = 1;
-    auto sr = &tim.sr;
-    return (*sr & uifBit) == 1;
+    auto sr = volatileLoad(&tim.sr);
+    return (sr & uifBit) == 1;
 }
 
 // Clear update flag.
 void clearUpdateFlag(Tim* tim)
 {
     auto sr = &tim.sr;
-    *sr &= ~1;
+    volatileStore(sr, *sr & ~1);
 }
 
 // Enable update event interrupt.
 void enableUpdateEventInterrupt(Tim* tim)
 {
     auto dier = &tim.dier;
-    *dier |= 1;
+    volatileStore(dier, *dier | 1);
 }
