@@ -4,7 +4,6 @@ import stm32f407discovery.gpio;
 import stm32f407discovery.usart;
 
 version (ARM_Thumb)  :
-extern (C):
 @nogc:
 nothrow:
 

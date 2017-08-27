@@ -3,7 +3,6 @@ module stm32f407discovery.led;
 import stm32f407discovery.gpio;
 
 version (ARM_Thumb) :
-extern (C):
 @nogc:
 nothrow:
 

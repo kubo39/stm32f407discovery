@@ -1,7 +1,6 @@
 module stm32f407discovery.rcc;
 
 version (ARM_Thumb) :
-extern (C):
 @nogc:
 nothrow:
 

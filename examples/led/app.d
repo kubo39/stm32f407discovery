@@ -3,11 +3,10 @@ import stm32f407discovery;
 import stm32f407discovery.led;
 import stm32f407discovery.timer;
 
-extern (C):
 @nogc:
 nothrow:
 
-void main()
+extern (C) void main()
 {
     pragma(LDC_never_inline);
 
