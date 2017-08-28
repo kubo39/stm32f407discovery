@@ -1,5 +1,6 @@
 module stm32f407discovery.led;
 
+import cortexm;
 import stm32f407discovery.gpio;
 
 version (ARM_Thumb) :
@@ -36,19 +37,19 @@ struct LED
     void off() nothrow @nogc
     {
         auto odr = &GPIOD.odr;
-        *odr &= ~(1 << this.color);
+        volatileStore(odr, *odr & ~(1 << this.color));
     }
 
     void on() nothrow @nogc
     {
         auto odr = &GPIOD.odr;
-        *odr |= 1 << this.color;
+        volatileStore(odr, *odr | 1 << this.color);
     }
 
     void toggle() nothrow @nogc
     {
         auto odr = &GPIOD.odr;
-        *odr ^= 1 << this.color;
+        volatileStore(odr, *odr ^ (1 << this.color));
     }
 
     void setMode(Mode mode) nothrow @nogc
