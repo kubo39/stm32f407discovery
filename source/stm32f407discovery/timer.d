@@ -76,7 +76,7 @@ struct Tim
 void powerOnTim2()
 {
     auto apb1enr = &RCC.apb1enr;
-    *apb1enr |= RCC_APB1ENR_TIM2EN;
+    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_TIM2EN);
 }
 
 // Power on TIM3.
