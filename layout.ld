@@ -28,7 +28,7 @@ SECTIONS
     *(.text*);
   } > FLASH
 
-  /* __gshared immutable */
+  /* __gshared immutable variables. */
   .rodata : ALIGN(4)
   {
     *(.rodata);
@@ -36,7 +36,7 @@ SECTIONS
     . = ALIGN(4);
   } > FLASH
 
-  /* __gshared */
+  /* __gshared variables. */
   .data : ALIGN(4)
   {
     *(.data);
@@ -44,9 +44,18 @@ SECTIONS
     . = ALIGN(4);
   } > FLASH
 
+  /* uninitialized __gshared variables and C linkage. */
+  .bss : ALIGN(4)
+  {
+    *(.bss);
+    *(.bss.*);
+    . = ALIGN(4);
+  } > FLASH
+
   /DISCARD/ :
   {
     *(.ARM.exidx*)
+    *(.ARM.extab*)
     *(.note.gnu.build-id*)
   }
 }
