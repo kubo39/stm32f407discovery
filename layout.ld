@@ -47,9 +47,11 @@ SECTIONS
   /* uninitialized __gshared variables and C linkage. */
   .bss : ALIGN(4)
   {
+    _sbss = .;
     *(.bss);
     *(.bss.*);
     . = ALIGN(4);
+    _ebss = .;
   } > FLASH
 
   /DISCARD/ :
