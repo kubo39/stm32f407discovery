@@ -52,7 +52,7 @@ SECTIONS
     *(.bss.*);
     . = ALIGN(4);
     _ebss = .;
-  } > FLASH
+  } > RAM
 
   /DISCARD/ :
   {
