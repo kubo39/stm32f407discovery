@@ -36,14 +36,6 @@ SECTIONS
     . = ALIGN(4);
   } > FLASH
 
-  /* __gshared variables. */
-  .data : ALIGN(4)
-  {
-    *(.data);
-    *(.data.*);
-    . = ALIGN(4);
-  } > FLASH
-
   /* uninitialized __gshared variables and C linkage. */
   .bss : ALIGN(4)
   {
@@ -53,6 +45,17 @@ SECTIONS
     . = ALIGN(4);
     _ebss = .;
   } > RAM
+
+  /* __gshared variables. */
+  .data : ALIGN(4)
+  {
+    _sidata = LOADADDR(.data);
+    _sdata = .;
+    *(.data);
+    *(.data.*);
+    . = ALIGN(4);
+    _edata = .;
+  } > FLASH
 
   /DISCARD/ :
   {
