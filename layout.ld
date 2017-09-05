@@ -2,29 +2,37 @@ ENTRY(_reset);
 
 MEMORY
 {
-  CCRAM : ORIGIN = 0x10000000, LENGTH = 64K
-  FLASH : ORIGIN = 0x08000000, LENGTH = 1024K
-  RAM : ORIGIN = 0x20000000, LENGTH = 128K
+  CCRAM (!rwxai) : ORIGIN = 0x10000000, LENGTH = 64K
+  FLASH (r!wxai) : ORIGIN = 0x08000000, LENGTH = 1024K
+  RAM (!rwxai) : ORIGIN = 0x20000000, LENGTH = 128K
 }
 
 PROVIDE(_stack_start = ORIGIN(RAM) + LENGTH(RAM));
 
 SECTIONS
 {
-  .text ORIGIN(FLASH) : ALIGN(4)
+  .isr_vector ORIGIN(FLASH) : ALIGN(4)
   {
     /* Vector table */
-    LONG(_stack_start);
     _reset = .;
-    KEEP(*(.text._reset));
+    LONG(_stack_start);
+    KEEP(*(.isr_vector._reset));
+    _reset = .;
+    KEEP(*(.isr_vector.exceptions));
+    KEEP(*(.isr_vector.interrupts));
+  } > FLASH
+
+  _stext = .;
+
+  .text _stext : ALIGN(4)
+  {
     LONG(reset_handler + 1);
-    KEEP(*(.rodata.exceptions));
-    KEEP(*(.rodata.interrupts));
     /* Reset handler */
     reset_handler = .;
     KEEP(*(.text.reset_handler));
 
     /* the code */
+    *(.text);
     *(.text*);
   } > FLASH
 
