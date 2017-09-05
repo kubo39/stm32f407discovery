@@ -29,15 +29,16 @@ SECTIONS
     KEEP(*(.text.reset_handler));
 
     /* the code */
-    *(.text);
+    KEEP(*(.text));
     *(.text*);
+    _etext = .;
   } > FLASH
 
   /* __gshared immutable variables. */
   .rodata : ALIGN(4)
   {
-    *(.rodata);
-    *(.rodata*);
+    KEEP(*(.rodata));
+    KEEP(*(.rodata*));
     . = ALIGN(4);
   } > FLASH
 
@@ -45,8 +46,8 @@ SECTIONS
   .bss : ALIGN(4)
   {
     _sbss = .;
-    *(.bss);
-    *(.bss.*);
+    KEEP(*(.bss));
+    KEEP(*(.bss.*));
     . = ALIGN(4);
     _ebss = .;
   } > RAM
@@ -56,8 +57,8 @@ SECTIONS
   {
     _sidata = LOADADDR(.data);
     _sdata = .;
-    *(.data);
-    *(.data.*);
+    KEEP(*(.data));
+    KEEP(*(.data.*));
     . = ALIGN(4);
     _edata = .;
   } > FLASH
