@@ -25,9 +25,7 @@ SECTIONS
 
   .text _stext : ALIGN(4)
   {
-    LONG(reset_handler + 1);
     /* Reset handler */
-    reset_handler = .;
     KEEP(*(.text.reset_handler));
 
     /* the code */
