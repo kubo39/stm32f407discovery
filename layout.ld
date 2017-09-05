@@ -17,7 +17,6 @@ SECTIONS
     _reset = .;
     LONG(_stack_start);
     KEEP(*(.isr_vector._reset));
-    _reset = .;
     KEEP(*(.isr_vector.exceptions));
     KEEP(*(.isr_vector.interrupts));
   } > FLASH
