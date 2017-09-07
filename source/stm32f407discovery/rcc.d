@@ -16,42 +16,42 @@ version(LDC)
 
 __gshared Rcc* RCC = cast(Rcc*) 0x40023800; // Start address of the RCC register
 
-immutable
+enum : uint
 {
     // AHB1ENR
-    uint RCC_AHB1ENR_GPIOAEN = 1;
-    uint RCC_AHB1ENR_GPIOBEN = 1 << 1;
-    uint RCC_AHB1ENR_GPIOCEN = 1 << 2;
-    uint RCC_AHB1ENR_GPIODEN = 1 << 3;
-    uint RCC_AHB1ENR_GPIOEEN = 1 << 4;
-    uint RCC_AHB1ENR_GPIOFEN = 1 << 5;
-    uint RCC_AHB1ENR_GPIOGEN = 1 << 6;
-    uint RCC_AHB1ENR_GPIOHEN = 1 << 7;
-    uint RCC_AHB1ENR_GPIOIEN = 1 << 8;
-    uint RCC_AHB1ENR_GPIOJEN = 1 << 9;
-    uint RCC_AHB1ENR_GPIOKEN = 1 << 10;
+    RCC_AHB1ENR_GPIOAEN = 1,
+    RCC_AHB1ENR_GPIOBEN = 1 << 1,
+    RCC_AHB1ENR_GPIOCEN = 1 << 2,
+    RCC_AHB1ENR_GPIODEN = 1 << 3,
+    RCC_AHB1ENR_GPIOEEN = 1 << 4,
+    RCC_AHB1ENR_GPIOFEN = 1 << 5,
+    RCC_AHB1ENR_GPIOGEN = 1 << 6,
+    RCC_AHB1ENR_GPIOHEN = 1 << 7,
+    RCC_AHB1ENR_GPIOIEN = 1 << 8,
+    RCC_AHB1ENR_GPIOJEN = 1 << 9,
+    RCC_AHB1ENR_GPIOKEN = 1 << 10,
 
     // APB1ENR
-    uint RCC_APB1ENR_TIM2EN = 1;
-    uint RCC_APB1ENR_TIM3EN = 1 << 1;
-    uint RCC_APB1ENR_TIM4EN = 1 << 2;
-    uint RCC_APB1ENR_TIM5EN = 1 << 3;
-    uint RCC_APB1ENR_TIM6EN = 1 << 4;
-    uint RCC_APB1ENR_TIM7EN = 1 << 5;
-    uint RCC_APB1ENR_TIM12EN = 1 << 6;
-    uint RCC_APB1ENR_TIM13EN = 1 << 7;
-    uint RCC_APB1ENR_TIM14EN = 1 << 8;
-    uint RCC_APB1ENR_USART2EN = 1 << 17;
-    uint RCC_APB1ENR_USART3EN = 1 << 18;
+    RCC_APB1ENR_TIM2EN = 1,
+    RCC_APB1ENR_TIM3EN = 1 << 1,
+    RCC_APB1ENR_TIM4EN = 1 << 2,
+    RCC_APB1ENR_TIM5EN = 1 << 3,
+    RCC_APB1ENR_TIM6EN = 1 << 4,
+    RCC_APB1ENR_TIM7EN = 1 << 5,
+    RCC_APB1ENR_TIM12EN = 1 << 6,
+    RCC_APB1ENR_TIM13EN = 1 << 7,
+    RCC_APB1ENR_TIM14EN = 1 << 8,
+    RCC_APB1ENR_USART2EN = 1 << 17,
+    RCC_APB1ENR_USART3EN = 1 << 18,
 
     // APB2ENR
-    uint RCC_APB2ENR_TIM1EN = 1;
-    uint RCC_APB2ENR_TIM8EN = 1 << 1;
-    uint RCC_APB2ENR_USART1EN = 1 << 4;
-    uint RCC_APB2ENR_USART6EN = 1 << 5;
-    uint RCC_APB2ENR_TIM9EN = 1 << 16;
-    uint RCC_APB2ENR_TIM10EN = 1 << 17;
-    uint RCC_APB2ENR_TIM11EN = 1 << 18;
+    RCC_APB2ENR_TIM1EN = 1,
+    RCC_APB2ENR_TIM8EN = 1 << 1,
+    RCC_APB2ENR_USART1EN = 1 << 4,
+    RCC_APB2ENR_USART6EN = 1 << 5,
+    RCC_APB2ENR_TIM9EN = 1 << 16,
+    RCC_APB2ENR_TIM10EN = 1 << 17,
+    RCC_APB2ENR_TIM11EN = 1 << 18,
 }
 
 struct Rcc

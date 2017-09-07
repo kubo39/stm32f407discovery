@@ -17,7 +17,7 @@ version (LDC)
  *  Serial
  */
 
-immutable uint APB1 = 16000000;
+enum uint APB1 = 16000000;
 
 void initSerial(ushort baudRate)
 {
