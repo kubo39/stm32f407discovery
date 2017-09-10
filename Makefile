@@ -26,13 +26,13 @@ clean:
 	$(RM) -r $(OBJDIR)/* $(TARGET)
 	$(MAKE) -C $(EXDIR)/crash clean
 	$(MAKE) -C $(EXDIR)/interrupt clean
-	$(MAKE) -C $(EXDIR)/itm clean
+	$(MAKE) -C $(EXDIR)/semihosting clean
 	$(MAKE) -C $(EXDIR)/led clean
 
 examples: $(TARGET)
 	$(MAKE) -C $(EXDIR)/crash
 	$(MAKE) -C $(EXDIR)/interrupt
-	$(MAKE) -C $(EXDIR)/itm
+	$(MAKE) -C $(EXDIR)/semihosting
 	$(MAKE) -C $(EXDIR)/led
 
 crash-run: $(TARGET)
@@ -41,8 +41,8 @@ crash-run: $(TARGET)
 interrupt-run: $(TARGET)
 	$(MAKE) -C $(EXDIR)/interrupt run
 
-itm-run: $(TARGET)
-	$(MAKE) -C $(EXDIR)/itm run
+semihosting-run: $(TARGET)
+	$(MAKE) -C $(EXDIR)/semihosting run
 
 led-run: $(TARGET)
 	$(MAKE) -C $(EXDIR)/led run

@@ -3,7 +3,7 @@ include $(TOP_DIR)/build/main.mk
 
 .PHONY: all clean
 
-TARGET = itm.bin
+TARGET = semihosting.bin
 
 SRC = $(shell find ./ -name "*.d")
 OBJ = app.o
