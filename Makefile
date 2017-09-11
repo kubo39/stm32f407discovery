@@ -28,12 +28,14 @@ clean:
 	$(MAKE) -C $(EXDIR)/interrupt clean
 	$(MAKE) -C $(EXDIR)/semihosting clean
 	$(MAKE) -C $(EXDIR)/led clean
+	$(MAKE) -C $(EXDIR)/profiling clean
 
 examples: $(TARGET)
 	$(MAKE) -C $(EXDIR)/crash
 	$(MAKE) -C $(EXDIR)/interrupt
 	$(MAKE) -C $(EXDIR)/semihosting
 	$(MAKE) -C $(EXDIR)/led
+	$(MAKE) -C $(EXDIR)/profiling
 
 crash-run: $(TARGET)
 	$(MAKE) -C $(EXDIR)/crash run
@@ -46,3 +48,6 @@ semihosting-run: $(TARGET)
 
 led-run: $(TARGET)
 	$(MAKE) -C $(EXDIR)/led run
+
+profiling-run: $(TARGET)
+	$(MAKE) -C $(EXDIR)/profiling run
