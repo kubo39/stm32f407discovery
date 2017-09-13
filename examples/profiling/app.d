@@ -1,4 +1,5 @@
 import cortexm;
+import ldc.llvmasm;
 
 @nogc:
 nothrow:
@@ -7,11 +8,10 @@ extern (C) void main()
 {
     pragma(LDC_never_inline);
 
-    // enable cycle counter.
     DWT.enableCycleCounter();
 
     auto start = DWT.cyccnt;
-    nop();
+    __asm("bkpt", "");
     auto end = DWT.cyccnt;
 
     auto elapsed = end - start;
@@ -19,5 +19,5 @@ extern (C) void main()
     // Use volatile to prevent LLVM from optimization.
     volatileStore(cast(uint*) 0x20000000, elapsed);
 
-    bkpt();  // gdb: >>> x 0x20000000
+    __asm("bkpt", "");  // gdb: >>> x 0x20000000
 }
