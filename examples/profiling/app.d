@@ -11,7 +11,7 @@ extern (C) void main()
     DWT.enableCycleCounter();
 
     auto start = DWT.cyccnt;
-    __asm("bkpt", "");
+    __asm("nop", "");
     auto end = DWT.cyccnt;
 
     auto elapsed = end - start;
