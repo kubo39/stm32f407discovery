@@ -55,41 +55,39 @@ struct GPIO
 void powerOnGpioa()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIOAEN);
+    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_GPIOAEN);
 }
 
 void powerOnGpiob()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIOBEN);
+    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_GPIOBEN);
 }
 
 void powerOnGpioc()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIOCEN);
+    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_GPIOCEN);
 }
 
 void powerOnGpiod()
 {
-    auto ahb1enr = &RCC.ahb1enr;
-    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIODEN);
+    volatileStore(&RCC.ahb1enr, volatileLoad(&RCC.ahb1enr) | RCC_AHB1ENR_GPIODEN);
 }
 
 void powerOnGpioe()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    volatileStore(ahb1enr, *ahb1enr | RCC_AHB1ENR_GPIOEEN);
+    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_GPIOEEN);
 }
 
 void setMode(GPIO* gpio, ubyte pin, Mode mode)
 {
-    auto moder = &gpio.moder;
-    *moder |= (*moder & ~(0b11 << pin * 2)) | (mode << pin * 2);
+    volatileStore(&gpio.moder, volatileLoad(&gpio.moder) | (volatileLoad(&gpio.moder) & ~(0b11 << pin * 2)) | (mode << pin * 2));
+    volatileStore(&gpio.moder, volatileLoad(&gpio.moder) | (volatileLoad(&gpio.moder) & ~(0b11 << pin * 2)) | (mode << pin * 2));
 }
 
 void setAltFunc(GPIO* gpio, ubyte pin)
 {
-    auto afrl = &gpio.afrl;
-    volatileStore(afrl, *afrl | (0b111 << pin));
+    volatileStore(&gpio.afrl, volatileLoad(&gpio.afrl) | (0b111 << pin));
 }

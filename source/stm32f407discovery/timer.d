@@ -75,77 +75,68 @@ struct Tim
 // Power on TIM2.
 void powerOnTim2()
 {
-    auto apb1enr = &RCC.apb1enr;
-    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_TIM2EN);
+    volatileStore(&RCC.apb1enr, volatileLoad(&RCC.apb1enr) | RCC_APB1ENR_TIM2EN);
 }
 
 // Power on TIM3.
 void powerOnTim3()
 {
     auto apb1enr = &RCC.apb1enr;
-    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_TIM3EN);
+    volatileStore(apb1enr, volatileLoad(apb1enr) | RCC_APB1ENR_TIM3EN);
 }
 
 // Power on TIM4.
 void powerOnTim4()
 {
     auto apb1enr = &RCC.apb1enr;
-    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_TIM4EN);
+    volatileStore(apb1enr, volatileLoad(apb1enr) | RCC_APB1ENR_TIM4EN);
 }
 
 // Power on TIM5.
 void powerOnTim5()
 {
     auto apb1enr = &RCC.apb1enr;
-    volatileStore(apb1enr, *apb1enr | RCC_APB1ENR_TIM5EN);
+    volatileStore(apb1enr, volatileLoad(apb1enr) | RCC_APB1ENR_TIM5EN);
 }
 
 // Resume the timer count.
 void resume(Tim* tim)
 {
-    auto cr1 = &tim.cr1;
-    volatileStore(cr1, *cr1 | 1);
+    volatileStore(&tim.cr1, volatileLoad(&tim.cr1) | 1);
 }
 
 // Pause the timer count.
 void pause(Tim* tim)
 {
-    auto cr1 = &tim.cr1;
-    volatileStore(cr1, *cr1 & ~1);
+    volatileStore(&tim.cr1, volatileLoad(&tim.cr1) & ~1);
 }
 
 // Configure the prescaler to have the timer operate.
 void setPrescaler(Tim* tim, ushort prescaler)
 {
-    auto psc = &tim.psc;
-    volatileStore(psc, prescaler);
+    volatileStore(&tim.psc, prescaler);
 }
 
 // set the timer to go off `autoreload` ticks.
 void setAutoreload(Tim* tim, uint autoreload)
 {
-    auto arr = &tim.arr;
-    volatileStore(arr, autoreload);
+    volatileStore(&tim.arr, autoreload);
 }
 
 // Check if update event has occurred.
 bool isUpdated(Tim* tim)
 {
-    uint uifBit = 1;
-    auto sr = volatileLoad(&tim.sr);
-    return (sr & uifBit) == 1;
+    return (volatileLoad(&tim.sr) & 1) == 1;
 }
 
 // Clear update flag.
 void clearUpdateFlag(Tim* tim)
 {
-    auto sr = &tim.sr;
-    volatileStore(sr, *sr & ~1);
+    volatileStore(&tim.sr, volatileLoad(&tim.sr) & ~1);
 }
 
 // Enable update event interrupt.
 void enableUpdateEventInterrupt(Tim* tim)
 {
-    auto dier = &tim.dier;
-    volatileStore(dier, *dier | 1);
+    volatileStore(&tim.dier, volatileLoad(&tim.dier) | 1);
 }
