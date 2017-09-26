@@ -41,7 +41,7 @@ struct LED
 
     void on() nothrow @nogc
     {
-        volatileStore(&GPIOD.odr, volatileLoad(&GPIOD.odr) | 1 << this.color);
+        volatileStore(&GPIOD.odr, volatileLoad(&GPIOD.odr) | (1 << this.color));
     }
 
     void toggle() nothrow @nogc
@@ -56,7 +56,6 @@ struct LED
     }
 }
 
-__gshared LED GREEN = LED(Color.GREEN);
 __gshared LED[4] LEDS = [LED(Color.GREEN), LED(Color.ORANGE), LED(Color.RED), LED(Color.BLUE)];
 
 void initLED()
