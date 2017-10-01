@@ -11,8 +11,7 @@ void main()
 {
     pragma(LDC_never_inline);
 
-    string words = "Hello\n";
-    writeString(words);
+    writeln("Hello");
     while (true)
         wfi();
 }
