@@ -1,4 +1,4 @@
-# STM32F407DISCOVERY
+# STM32F407DISCOVERY [![Build Status](https://secure.travis-ci.org/kubo39/stm32f407discovery.svg?branch=master)](http://travis-ci.org/kubo39/stm32f407discovery)
 
 STM32F407DISCOVERY dev board library for LDC.
 
