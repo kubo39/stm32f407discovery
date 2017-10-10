@@ -13,10 +13,10 @@ version (LDC)
     pragma(LDC_no_typeinfo);
 }
 
-/**
- *  LED
- */
 
+/**
+Colors for LED.
+*/
 enum Color : ubyte
 {
     GREEN = 12,
@@ -25,6 +25,10 @@ enum Color : ubyte
     BLUE = 15,
 }
 
+
+/**
+LED
+ */
 struct Led
 {
     Color color;
