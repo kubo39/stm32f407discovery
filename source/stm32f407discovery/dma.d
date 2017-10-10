@@ -75,5 +75,23 @@ struct Dma
     uint s7fcr;
 }
 
-
 static assert(Dma.sizeof == 0xCC + 0x4);
+
+
+/**
+Enable DMA1.
+*/
+void enableDMA1()
+{
+    auto ahb1enr = &RCC.ahb1enr;
+    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_DMA1EN);
+}
+
+/**
+Enable DMA2.
+*/
+void enableDMA2()
+{
+    auto ahb1enr = &RCC.ahb1enr;
+    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_DMA2EN);
+}
