@@ -45,12 +45,14 @@ struct Gpio
     uint pupdr;
     uint idr;
     uint odr;
-    uint bsrrl;
-    uint bsrrh;
+    uint bsrr;
     uint lckr;
     uint afrl;
     uint afrh;
 }
+
+static assert(Gpio.sizeof == 0x24 + 0x4);
+
 
 void powerOnGpioa()
 {

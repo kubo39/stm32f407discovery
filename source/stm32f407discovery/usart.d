@@ -18,6 +18,7 @@ __gshared Usart* USART3 = cast(Usart*) 0x40004800; // Start address of the Usart
 __gshared Usart* USART1 = cast(Usart*) 0x40011000; // Start address of the Usart1 register
 __gshared Usart* USART6 = cast(Usart*) 0x40011400; // Start address of the Usart6 register
 
+
 /**
 Usart
  */
@@ -31,6 +32,9 @@ struct Usart
     uint cr3; // Control regiter 3.
     uint gtpr; // Guard time and prescaler register.
 }
+
+static assert(Usart.sizeof == 0x18 + 0x4);
+
 
 void powerOnUsart2()
 {

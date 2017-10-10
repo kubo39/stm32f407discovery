@@ -17,6 +17,9 @@ __gshared Adc* ADC1 = cast(Adc*) 0x40012000;  // Start address of the ADC1 regis
 __gshared Adc* ADC2 = cast(Adc*) 0x40012100;  // Start address of the ADC2 register.
 __gshared Adc* ADC3 = cast(Adc*) 0x40012200;  // Start address of the ADC3 register.
 
+// ADC Common registers.
+__gshared AdcCommon* ADC_COMMON = cast (AdcCommon*) 0x40012300;
+
 
 /**
 Analog-to-Digital Converter.
@@ -42,10 +45,7 @@ struct Adc
     uint jdr2;
     uint jdr3;
     uint jdr4;
-    uint dr1;
-    uint csr;
-    uint ccr;
-    uint cdr;
+    uint dr;
 
     void on() nothrow @nogc
     {
@@ -57,6 +57,21 @@ struct Adc
         this.cr2 &= ~1;
     }
 }
+
+static assert(Adc.sizeof == 0x4c + 0x4);
+
+
+/**
+ADC Common registers.
+*/
+struct AdcCommon
+{
+    uint csr;
+    uint ccr;
+    uint cdr;
+}
+
+static assert(AdcCommon.sizeof == 0x8 + 0x4);
 
 
 /**

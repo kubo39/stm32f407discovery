@@ -83,14 +83,12 @@ struct Rcc
     uint __reserved4;
     uint apb1lpenr;
     uint apb2lpenr;
-    uint __reserved5;
+    uint[2] __reserved5;
     uint bdcr;
     uint csr;
     uint[2] __reserved6;
     uint sscgr;
     uint plli2scfgr;
-    uint pllsaicfgr;
-    uint dckcfgr;
-    uint ckgatenr;
-    uint dckcfgr2;
 }
+
+static assert(Rcc.sizeof == 0x84 + 0x4);

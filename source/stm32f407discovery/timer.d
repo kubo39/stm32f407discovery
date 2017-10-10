@@ -72,6 +72,9 @@ struct Tim
     ushort __reserved14;
 }
 
+static assert(Tim.sizeof == 0x50 + 0x4);
+
+
 // Power on TIM2.
 void powerOnTim2()
 {
