@@ -87,11 +87,11 @@ void enableADC1()
 /**
 Initialize ADC1.
  */
-void initADC1(Adc adc)
+void initADC1()
 {
     // Enable ADC1.
     enableADC1();
 
     // A/D Converter on.
-    adc.on();
+    ADC1.on();
 }
