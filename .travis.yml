@@ -1,0 +1,14 @@
+language: d
+d:
+  - ldc
+script:
+  - make
+  - make examples
+addons:
+  apt:
+    packages:
+      - make
+      - gcc-arm-none-eabi
+notifications:
+  email:
+    on_success: never
