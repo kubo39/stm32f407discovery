@@ -17,17 +17,17 @@ version (LDC)
  *  GPIO
  */
 
-__gshared GPIO* GPIOA = cast(GPIO*) 0x40020000; // Start address of the GPIOA register
-__gshared GPIO* GPIOB = cast(GPIO*) 0x40020400; // Start address of the GPIOB register
-__gshared GPIO* GPIOC = cast(GPIO*) 0x40020800; // Start address of the GPIOC register
-__gshared GPIO* GPIOD = cast(GPIO*) 0x40020C00; // Start address of the GPIOD register
-__gshared GPIO* GPIOE = cast(GPIO*) 0x40021000; // Start address of the GPIOE register
-__gshared GPIO* GPIOF = cast(GPIO*) 0x40021400; // Start address of the GPIOF register
-__gshared GPIO* GPIOG = cast(GPIO*) 0x40021800; // Start address of the GPIOG register
-__gshared GPIO* GPIOH = cast(GPIO*) 0x40021C00; // Start address of the GPIOH register
-__gshared GPIO* GPIOI = cast(GPIO*) 0x40022000; // Start address of the GPIOI register
-__gshared GPIO* GPIOJ = cast(GPIO*) 0x40022400; // Start address of the GPIOJ register
-__gshared GPIO* GPIOK = cast(GPIO*) 0x40022800; // Start address of the GPIOK register
+__gshared Gpio* GPIOA = cast(Gpio*) 0x40020000; // Start address of the GPIOA register
+__gshared Gpio* GPIOB = cast(Gpio*) 0x40020400; // Start address of the GPIOB register
+__gshared Gpio* GPIOC = cast(Gpio*) 0x40020800; // Start address of the GPIOC register
+__gshared Gpio* GPIOD = cast(Gpio*) 0x40020C00; // Start address of the GPIOD register
+__gshared Gpio* GPIOE = cast(Gpio*) 0x40021000; // Start address of the GPIOE register
+__gshared Gpio* GPIOF = cast(Gpio*) 0x40021400; // Start address of the GPIOF register
+__gshared Gpio* GPIOG = cast(Gpio*) 0x40021800; // Start address of the GPIOG register
+__gshared Gpio* GPIOH = cast(Gpio*) 0x40021C00; // Start address of the GPIOH register
+__gshared Gpio* GPIOI = cast(Gpio*) 0x40022000; // Start address of the GPIOI register
+__gshared Gpio* GPIOJ = cast(Gpio*) 0x40022400; // Start address of the GPIOJ register
+__gshared Gpio* GPIOK = cast(Gpio*) 0x40022800; // Start address of the GPIOK register
 
 enum Mode
 {
@@ -37,7 +37,7 @@ enum Mode
     Analog = 0b11,
 }
 
-struct GPIO
+struct Gpio
 {
     uint moder;
     uint otyper;
@@ -81,13 +81,13 @@ void powerOnGpioe()
     volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_GPIOEEN);
 }
 
-void setMode(GPIO* gpio, ubyte pin, Mode mode)
+void setMode(Gpio* gpio, ubyte pin, Mode mode)
 {
     volatileStore(&gpio.moder, volatileLoad(&gpio.moder) | (volatileLoad(&gpio.moder) & ~(0b11 << pin * 2)) | (mode << pin * 2));
     volatileStore(&gpio.moder, volatileLoad(&gpio.moder) | (volatileLoad(&gpio.moder) & ~(0b11 << pin * 2)) | (mode << pin * 2));
 }
 
-void setAltFunc(GPIO* gpio, ubyte pin)
+void setAltFunc(Gpio* gpio, ubyte pin)
 {
     volatileStore(&gpio.afrl, volatileLoad(&gpio.afrl) | (0b111 << pin));
 }

@@ -13,15 +13,14 @@ version (LDC)
     pragma(LDC_no_typeinfo);
 }
 
-/**
- *  Usart
- */
-
 __gshared Usart* USART2 = cast(Usart*) 0x40004400; // Start address of the Usart2 register
 __gshared Usart* USART3 = cast(Usart*) 0x40004800; // Start address of the Usart3 register
 __gshared Usart* USART1 = cast(Usart*) 0x40011000; // Start address of the Usart1 register
 __gshared Usart* USART6 = cast(Usart*) 0x40011400; // Start address of the Usart6 register
 
+/**
+Usart
+ */
 struct Usart
 {
     uint sr; // Status register.

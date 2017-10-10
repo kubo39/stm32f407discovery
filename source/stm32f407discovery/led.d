@@ -25,7 +25,7 @@ enum Color : ubyte
     BLUE = 15,
 }
 
-struct LED
+struct Led
 {
     Color color;
 
@@ -56,7 +56,7 @@ struct LED
     }
 }
 
-__gshared LED[4] LEDS = [LED(Color.GREEN), LED(Color.ORANGE), LED(Color.RED), LED(Color.BLUE)];
+__gshared Led[4] LEDS = [Led(Color.GREEN), Led(Color.ORANGE), Led(Color.RED), Led(Color.BLUE)];
 
 void initLED()
 {
