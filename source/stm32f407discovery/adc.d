@@ -65,7 +65,7 @@ Enable ADC1.
 void enableADC1()
 {
     auto apb2enr = &RCC.apb2enr;
-    volatileStore(apb2enr, volatileLoad(apb2enr) | 1 << 8);
+    volatileStore(apb2enr, volatileLoad(apb2enr) | RCC_APB2ENR_ADC1EN);
 }
 
 
