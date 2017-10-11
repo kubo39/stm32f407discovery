@@ -1,6 +1,7 @@
 module stm32f407discovery.adc;
 
 import cortexm;
+import stm32f407discovery.gpio;
 import stm32f407discovery.rcc;
 
 version (ARM_Thumb):
@@ -83,14 +84,26 @@ void enableADC1()
     volatileStore(apb2enr, volatileLoad(apb2enr) | RCC_APB2ENR_ADC1EN);
 }
 
+/**
+Enable ADC2.
+ */
+void enableADC2()
+{
+    auto apb2enr = &RCC.apb2enr;
+    volatileStore(apb2enr, volatileLoad(apb2enr) | RCC_APB2ENR_ADC2EN);
+}
+
 
 /**
-Initialize ADC1.
+Initialize ADC1 with Pin.
  */
-void initADC1()
+void initADC1(Gpio* gpio, ubyte pin)
 {
     // Enable ADC1.
     enableADC1();
+
+    // Set pin as analog input.
+    gpio.setMode(pin, Mode.In);
 
     // A/D Converter on.
     ADC1.on();
