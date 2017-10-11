@@ -11,7 +11,7 @@ void main()
 {
     pragma(LDC_never_inline);
 
-    auto tim2 = powerOnTIM!"Tim2"();
+    auto tim2 = powerOnTIM!"TIM2"();
     initLED();
 
     tim2.pause();
