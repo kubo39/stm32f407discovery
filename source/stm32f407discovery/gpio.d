@@ -60,11 +60,11 @@ static assert(Gpio.sizeof == 0x24 + 0x4);
 
 Gpio* powerOnGPIO(string s)()
 {
-    auto ahb1enr = &RCC.ahb1enr;
     static if (s == "GPIOA" || s == "GPIOB"
                || s == "GPIOC" || s == "GPIOD" || s == "GPIOE")
         mixin("volatileStore(&RCC.ahb1enr, volatileLoad(&RCC.ahb1enr) | RCC_AHB1ENR_"
               ~ s ~ "EN);return " ~ s ~ ";");
+    else static assert (false);
 }
 
 
