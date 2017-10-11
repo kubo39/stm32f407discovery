@@ -35,30 +35,22 @@ struct Usart
 
 static assert(Usart.sizeof == 0x18 + 0x4);
 
-
-void powerOnUsart2()
+// Power on USART.
+Usart* powerOnUSART(string name)()
 {
-    auto apb1enr = &RCC.apb1enr;
-    volatileStore(apb1enr, volatileLoad(apb1enr) | RCC_APB1ENR_USART2EN);
+    static if (name == "USART2" || name == "USART3")
+    {
+        mixin("volatileStore(&RCC.apb1enr, volatileLoad(&RCC.apb1enr) | RCC_APB1ENR_"
+              ~ name ~ "EN);return " ~ name ~ ";");
+    }
+    else if (name == "USART1" || name == "USART6")
+    {
+        mixin("volatileStore(&RCC.apb2enr, volatileLoad(&RCC.apb2enr) | RCC_APB2ENR_"
+              ~ name ~ "EN);return " ~ name = ";");
+    }
+    else static assert (false);
 }
 
-void powerOnUsart3()
-{
-    auto apb1enr = &RCC.apb1enr;
-    volatileStore(apb1enr, volatileLoad(apb1enr) | RCC_APB1ENR_USART3EN);
-}
-
-void powerOnUsart1()
-{
-    auto apb2enr = &RCC.apb2enr;
-    volatileStore(apb2enr, volatileLoad(apb2enr) | RCC_APB2ENR_USART1EN);
-}
-
-void powerOnUsart6()
-{
-    auto apb2enr = &RCC.apb2enr;
-    volatileStore(apb2enr, volatileLoad(apb2enr) | RCC_APB2ENR_USART6EN);
-}
 
 enum CR1
 {
