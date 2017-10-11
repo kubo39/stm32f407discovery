@@ -21,15 +21,15 @@ enum uint APB1 = 16000000;
 
 void initSerial(ushort baudRate)
 {
-    powerOnGpioa();
+    auto gpioa = powerOnGPIO!"GPIOA"();
     powerOnUsart2();
 
     // Configure PA2 as TX and PA3 as RX
-    GPIOA.setAltFunc(2);
-    GPIOA.setAltFunc(3);
+    gpioa.setAltFunc(2);
+    gpioa.setAltFunc(3);
 
-    GPIOA.setMode(2, Mode.AltFunc);
-    GPIOA.setMode(3, Mode.AltFunc);
+    gpioa.setMode(2, Mode.AltFunc);
+    gpioa.setMode(3, Mode.AltFunc);
 
     // 1 stop bit.
     USART2.setStopBits(0b00);

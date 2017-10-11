@@ -97,8 +97,11 @@ void enableADC2()
 /**
 Initialize ADC1 with Pin.
  */
-void initADC1(Gpio* gpio, ubyte pin)
+void initADC1(string name)(ubyte pin)
 {
+    // Initialize GPIO pin.
+    auto gpio = powerOnGPIO!(name)();
+
     // Enable ADC1.
     enableADC1();
 

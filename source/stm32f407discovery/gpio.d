@@ -13,9 +13,6 @@ version (LDC)
     pragma(LDC_no_typeinfo);
 }
 
-/**
- *  GPIO
- */
 
 __gshared Gpio* GPIOA = cast(Gpio*) 0x40020000; // Start address of the GPIOA register
 __gshared Gpio* GPIOB = cast(Gpio*) 0x40020400; // Start address of the GPIOB register
@@ -29,6 +26,9 @@ __gshared Gpio* GPIOI = cast(Gpio*) 0x40022000; // Start address of the GPIOI re
 __gshared Gpio* GPIOJ = cast(Gpio*) 0x40022400; // Start address of the GPIOJ register
 __gshared Gpio* GPIOK = cast(Gpio*) 0x40022800; // Start address of the GPIOK register
 
+
+
+
 enum Mode
 {
     In = 0b00,
@@ -37,6 +37,10 @@ enum Mode
     Analog = 0b11,
 }
 
+
+/**
+GPIO
+ */
 struct Gpio
 {
     uint moder;
@@ -54,40 +58,22 @@ struct Gpio
 static assert(Gpio.sizeof == 0x24 + 0x4);
 
 
-void powerOnGpioa()
+Gpio* powerOnGPIO(string s)()
 {
     auto ahb1enr = &RCC.ahb1enr;
-    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_GPIOAEN);
+    static if (s == "GPIOA" || s == "GPIOB"
+               || s == "GPIOC" || s == "GPIOD" || s == "GPIOE")
+        mixin("volatileStore(&RCC.ahb1enr, volatileLoad(&RCC.ahb1enr) | RCC_AHB1ENR_"
+              ~ s ~ "EN);return " ~ s ~ ";");
 }
 
-void powerOnGpiob()
-{
-    auto ahb1enr = &RCC.ahb1enr;
-    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_GPIOBEN);
-}
-
-void powerOnGpioc()
-{
-    auto ahb1enr = &RCC.ahb1enr;
-    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_GPIOCEN);
-}
-
-void powerOnGpiod()
-{
-    volatileStore(&RCC.ahb1enr, volatileLoad(&RCC.ahb1enr) | RCC_AHB1ENR_GPIODEN);
-}
-
-void powerOnGpioe()
-{
-    auto ahb1enr = &RCC.ahb1enr;
-    volatileStore(ahb1enr, volatileLoad(ahb1enr) | RCC_AHB1ENR_GPIOEEN);
-}
 
 void setMode(Gpio* gpio, ubyte pin, Mode mode)
 {
     volatileStore(&gpio.moder, volatileLoad(&gpio.moder) | (volatileLoad(&gpio.moder) & ~(0b11 << pin * 2)) | (mode << pin * 2));
     volatileStore(&gpio.moder, volatileLoad(&gpio.moder) | (volatileLoad(&gpio.moder) & ~(0b11 << pin * 2)) | (mode << pin * 2));
 }
+
 
 void setAltFunc(Gpio* gpio, ubyte pin)
 {
