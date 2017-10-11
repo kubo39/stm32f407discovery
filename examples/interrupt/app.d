@@ -11,17 +11,17 @@ void main()
 {
     pragma(LDC_never_inline);
 
-    powerOnTim2();
+    auto tim2 = powerOnTIM!"Tim2"();
     initLED();
 
-    TIM2.pause();
-    TIM2.setPrescaler(64);
-    TIM2.setAutoreload(328124);
-    TIM2.resume();
+    tim2.pause();
+    tim2.setPrescaler(64);
+    tim2.setAutoreload(328124);
+    tim2.resume();
 
     // Enable TIM2 update IRQ.
     NVIC.enable(28);
-    TIM2.enableUpdateEventInterrupt();
+    tim2.enableUpdateEventInterrupt();
 
     while (true)
     {

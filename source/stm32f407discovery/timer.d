@@ -75,32 +75,15 @@ struct Tim
 static assert(Tim.sizeof == 0x50 + 0x4);
 
 
-// Power on TIM2.
-void powerOnTim2()
+// Power on TIM.
+Tim* powerOnTIM(string name)()
 {
-    volatileStore(&RCC.apb1enr, volatileLoad(&RCC.apb1enr) | RCC_APB1ENR_TIM2EN);
+    static if (name == "TIM2" || name == "TIM3" || name == "TIM4" || name == "TIM5")
+        mixin("volatileStore(&RCC.apb1enr, volatileLoad(&RCC.apb1enr) | RCC_APB1ENR_"
+              ~ name ~ "EN);return " ~ name ~ ";");
+    else static assert (false);
 }
 
-// Power on TIM3.
-void powerOnTim3()
-{
-    auto apb1enr = &RCC.apb1enr;
-    volatileStore(apb1enr, volatileLoad(apb1enr) | RCC_APB1ENR_TIM3EN);
-}
-
-// Power on TIM4.
-void powerOnTim4()
-{
-    auto apb1enr = &RCC.apb1enr;
-    volatileStore(apb1enr, volatileLoad(apb1enr) | RCC_APB1ENR_TIM4EN);
-}
-
-// Power on TIM5.
-void powerOnTim5()
-{
-    auto apb1enr = &RCC.apb1enr;
-    volatileStore(apb1enr, volatileLoad(apb1enr) | RCC_APB1ENR_TIM5EN);
-}
 
 // Resume the timer count.
 void resume(Tim* tim)

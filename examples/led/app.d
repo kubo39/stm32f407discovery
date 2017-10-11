@@ -11,7 +11,7 @@ extern (C) void main()
 {
     pragma(LDC_never_inline);
 
-    powerOnTim2();
+    powerOnTIM!"TIM2"();
     initLED();
 
     // Initialize ADC1 with a PC2 pin.
