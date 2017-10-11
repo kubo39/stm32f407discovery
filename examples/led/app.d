@@ -11,14 +11,14 @@ extern (C) void main()
 {
     pragma(LDC_never_inline);
 
-    powerOnTIM!"TIM2"();
+    auto tim2 = powerOnTIM!"TIM2"();
     initLED();
 
     // Initialize ADC1 with a PC2 pin.
     initADC1!"GPIOC"(2);
 
-    TIM2.pause();
-    TIM2.setPrescaler(7999);
+    tim2.pause();
+    tim2.setPrescaler(7999);
 
     while (true)
     {
@@ -26,22 +26,22 @@ extern (C) void main()
         foreach (led; LEDS)
         {
             led.on();
-            delay(ticks);
+            delay(ticks, tim2);
             led.off();
-            delay(ticks);
+            delay(ticks, tim2);
         }
     }
 }
 
-void delay(uint ticks)
+void delay(uint ticks, Tim* tim)
 {
     pragma(LDC_never_inline);
 
-    TIM2.setAutoreload(ticks);
-    TIM2.resume();
+    tim.setAutoreload(ticks);
+    tim.resume();
 
-    while (!TIM2.isUpdated())
+    while (!tim.isUpdated())
     {
     }
-    TIM2.clearUpdateFlag();
+    tim.clearUpdateFlag();
 }
