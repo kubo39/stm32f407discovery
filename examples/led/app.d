@@ -26,17 +26,15 @@ extern (C) void main()
         foreach (led; LEDS)
         {
             led.on();
-            delay(ticks, tim2);
+            tim2.delay(ticks);
             led.off();
-            delay(ticks, tim2);
+            tim2.delay(ticks);
         }
     }
 }
 
-void delay(uint ticks, Tim* tim)
+void delay(Tim* tim, uint ticks)
 {
-    pragma(LDC_never_inline);
-
     tim.setAutoreload(ticks);
     tim.resume();
 
