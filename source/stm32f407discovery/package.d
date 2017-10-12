@@ -13,6 +13,9 @@ version(LDC)
 public import cortexm;
 
 
+/**
+Power on each peripherals.
+ */
 auto powerOn(string name)()
 {
     static if (name == "ADC1" || name == "ADC2")
