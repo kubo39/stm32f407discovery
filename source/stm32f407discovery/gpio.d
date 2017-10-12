@@ -71,7 +71,6 @@ Gpio* powerOnGPIO(string s)()
 void setMode(Gpio* gpio, ubyte pin, Mode mode)
 {
     volatileStore(&gpio.moder, volatileLoad(&gpio.moder) | (volatileLoad(&gpio.moder) & ~(0b11 << pin * 2)) | (mode << pin * 2));
-    volatileStore(&gpio.moder, volatileLoad(&gpio.moder) | (volatileLoad(&gpio.moder) & ~(0b11 << pin * 2)) | (mode << pin * 2));
 }
 
 
