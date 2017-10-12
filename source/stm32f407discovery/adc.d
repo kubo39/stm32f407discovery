@@ -83,6 +83,7 @@ Adc* powerOnADC(string name)()
     static if (name == "ADC1" || name == "ADC2")
         mixin("volatileStore(&RCC.apb2enr, volatileLoad(&RCC.apb2enr) | RCC_APB2ENR_"
               ~ name ~ "EN);return " ~ name ~ ";");
+    else static assert (false);
 }
 
 
