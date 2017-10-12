@@ -64,7 +64,7 @@ __gshared Led[4] LEDS = [Led(Color.GREEN), Led(Color.ORANGE), Led(Color.RED), Le
 
 void initLED()
 {
-    auto gpiod = powerOnGPIO!("GPIOD")();
+    auto gpiod = powerOnGPIO!"GPIOD"();
     gpiod.setMode(Color.GREEN, Mode.Out);
     gpiod.setMode(Color.ORANGE, Mode.Out);
     gpiod.setMode(Color.RED, Mode.Out);

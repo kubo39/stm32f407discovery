@@ -3,7 +3,7 @@ module stm32f407discovery.gpio;
 import cortexm;
 import stm32f407discovery.rcc;
 
-version (ARM_Thumb)  :
+version (ARM_Thumb):
 @nogc:
 nothrow:
 
@@ -60,8 +60,7 @@ static assert(Gpio.sizeof == 0x24 + 0x4);
 
 Gpio* powerOnGPIO(string s)()
 {
-    static if (s == "GPIOA" || s == "GPIOB"
-               || s == "GPIOC" || s == "GPIOD" || s == "GPIOE")
+    static if (s == "GPIOA" || s == "GPIOB" || s == "GPIOC" || s == "GPIOD" || s == "GPIOE")
         mixin("volatileStore(&RCC.ahb1enr, volatileLoad(&RCC.ahb1enr) | RCC_AHB1ENR_"
               ~ s ~ "EN);return " ~ s ~ ";");
     else static assert (false);
