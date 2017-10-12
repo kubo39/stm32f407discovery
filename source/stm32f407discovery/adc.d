@@ -76,21 +76,13 @@ static assert(AdcCommon.sizeof == 0x8 + 0x4);
 
 
 /**
-Enable ADC1.
+Power on ADC.
  */
-void enableADC1()
+Adc* powerOnADC(string name)()
 {
-    auto apb2enr = &RCC.apb2enr;
-    volatileStore(apb2enr, volatileLoad(apb2enr) | RCC_APB2ENR_ADC1EN);
-}
-
-/**
-Enable ADC2.
- */
-void enableADC2()
-{
-    auto apb2enr = &RCC.apb2enr;
-    volatileStore(apb2enr, volatileLoad(apb2enr) | RCC_APB2ENR_ADC2EN);
+    static if (name == "ADC1" || name == "ADC2")
+        mixin("volatileStore(&RCC.apb2enr, volatileLoad(&RCC.apb2enr) | RCC_APB2ENR_"
+              ~ name ~ "EN);return " ~ name ~ ";");
 }
 
 
@@ -102,12 +94,12 @@ void initADC1(string name)(ubyte pin)
     // Initialize GPIO pin.
     auto gpio = powerOnGPIO!(name)();
 
-    // Enable ADC1.
-    enableADC1();
+    // Power on ADC1.
+    auto adc1 = powerOnADC!"ADC1"();
 
     // Set pin as analog input.
     gpio.setMode(pin, Mode.In);
 
     // A/D Converter on.
-    ADC1.on();
+    adc1.on();
 }
