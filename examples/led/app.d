@@ -1,6 +1,5 @@
 import stm32f407discovery;
 
-import stm32f407discovery.adc;
 import stm32f407discovery.led;
 import stm32f407discovery.timer;
 
@@ -13,9 +12,6 @@ extern (C) void main()
 
     auto tim2 = powerOn!"TIM2"();
     initLED();
-
-    // Initialize ADC1 with a PC2 pin.
-    initADC1!"GPIOC"(2);
 
     tim2.pause();
     tim2.setPrescaler(7999);
