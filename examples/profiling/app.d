@@ -14,10 +14,8 @@ extern (C) void main()
     __asm("nop", "");
     auto end = DWT.cyccnt;
 
-    auto elapsed = end - start;
-
     // Use volatile to prevent LLVM from optimization.
-    volatileStore(cast(uint*) 0x20000000, elapsed);
+    volatileStore(cast(uint*) 0x20000000, end - start);
 
     __asm("bkpt", "");  // gdb: >>> x 0x20000000
 }
