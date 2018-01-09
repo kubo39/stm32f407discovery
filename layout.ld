@@ -61,7 +61,7 @@ SECTIONS
     *(.data.*);
     . = ALIGN(4);
     _edata = .;
-  } > FLASH
+  } > RAM AT > FLASH
 
   /DISCARD/ :
   {

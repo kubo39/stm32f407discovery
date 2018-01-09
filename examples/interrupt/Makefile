@@ -8,7 +8,7 @@ TARGET = int.bin
 SRC = $(shell find ./ -name "*.d")
 OBJ = app.o
 
-LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -betterC -c -g -defaultlib= -Os -release
+LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -betterC -c -g -defaultlib= -relocation-model=static -Os -release
 LDFLAGS = -T $(TOP_DIR)/layout.ld -nostartfiles
 
 LIBRARY = stm32f407discovery
