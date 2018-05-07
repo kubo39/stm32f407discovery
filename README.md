@@ -14,10 +14,10 @@ $ sudo apt install -y openocd gdb-arm-none-eabi gcc-arm-none-eabi
 
 - LLVM D Compiler
 
-I have tested on LDC-1.4.0.
+I have tested on LDC-1.9.0.
 
 ```console
-$ curl -fsS https://dlang.org/install.sh | bash -s ldc-1.4.0
+$ curl -fsS https://dlang.org/install.sh | bash -s ldc-1.9.0
 $ source $HOME/dlang/ldc-1.4.0/activate
 ```
 
