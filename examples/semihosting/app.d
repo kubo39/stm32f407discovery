@@ -11,7 +11,7 @@ void main()
 {
     pragma(LDC_never_inline);
 
-    writeln("Hello");
+    writeln("Hello, World!");
     while (true)
         wfi();
 }
