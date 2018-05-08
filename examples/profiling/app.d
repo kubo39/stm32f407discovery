@@ -1,3 +1,4 @@
+import core.bitop;
 import cortexm;
 import ldc.llvmasm;
 
