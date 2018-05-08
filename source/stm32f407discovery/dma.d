@@ -1,6 +1,7 @@
 module stm32f407discovery.dma;
 
 import cortexm;
+import core.bitop;
 import stm32f407discovery.rcc;
 
 version (ARM_Thumb):

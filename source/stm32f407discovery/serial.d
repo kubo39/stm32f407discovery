@@ -1,5 +1,6 @@
 module stm32f407discovery.serial;
 
+import core.bitop;
 import stm32f407discovery.gpio;
 import stm32f407discovery.usart;
 

@@ -1,5 +1,6 @@
 module stm32f407discovery.led;
 
+import core.bitop;
 import cortexm;
 import stm32f407discovery.gpio;
 
