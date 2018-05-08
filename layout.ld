@@ -63,6 +63,9 @@ SECTIONS
     _edata = .;
   } > RAM AT > FLASH
 
+  /* The heap starts right after the .bss + .data section ends. */
+  _sheap =_edata;
+
   /DISCARD/ :
   {
     *(.ARM.exidx*)
