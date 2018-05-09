@@ -71,6 +71,8 @@ SECTIONS
     *(.ARM.exidx*)
     *(.ARM.extab*)
     *(.note.gnu.build-id*)
+    *(.ARM.attributes*)
+    *(.comment)
   }
 }
 
