@@ -14,11 +14,15 @@ extern (C) void main()
     initLED();
 
     tim2.pause();
-    tim2.setPrescaler(7999);
+
+    // APB1_CLOCK = 84 MHz
+    // PSC = 83
+    // 84 MHz / (83 + 1) = 1 MHz
+    tim2.setPrescaler(83);
 
     while (true)
     {
-        auto ticks = 1000;
+        auto ticks = 50 * 1000;
         foreach (led; LEDS)
         {
             led.on();
@@ -31,6 +35,7 @@ extern (C) void main()
 
 void delay(Tim* tim, uint ticks)
 {
+    // 1000 tick = 1 ms
     tim.setAutoreload(ticks);
     tim.resume();
 
