@@ -7,15 +7,17 @@ TARGET = libstm32f407discovery.a
 SRCS = \
 	$(shell find ./source -name "*.d") \
 	$(shell find ./cortexm/source -name "*.d") \
+	$(shell find ./druntime/source -name "*.d") \
 	$(shell find ./semihosting/source -name "*.d")
 OBJDIR = out
 EXDIR = examples
 
-LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -betterC -defaultlib= -relocation-model=static -Os -release -g -lib -od=$(OBJDIR) -of$(TARGET)
+LDCFLAGS = -mtriple=thumbv7em-none-linux-gnueabihf -defaultlib= -relocation-model=static -Os -release -g -lib -od=$(OBJDIR) -of$(TARGET)
 
 LINKFLAGS = \
 	-I./source \
-	-I./cortexm/source
+	-I./cortexm/source \
+	-I./druntime/source
 
 all: $(TARGET)
 
